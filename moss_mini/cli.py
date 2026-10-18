@@ -31,6 +31,8 @@ def parser():
         q.add_argument("--cpu-threads", type=int, default=4)
         q.add_argument("--output", type=Path, required=True, help="New directory; existing directories are never overwritten")
         if name == "generate":
+            q.add_argument("--encoder-dequant", choices=("torch", "triton"), default="torch",
+                           help="Experimental Triton fused unpack/scale, or reference torch (default)")
             q.add_argument("--packed", type=Path, help="Prepacked encoder directory from moss-mini pack")
             q.add_argument("--prompt", required=True)
             q.add_argument("--negative-prompt", default="")
@@ -54,7 +56,7 @@ def worker(phase, plan_path):
     out = plan_path.parent
     started = time.perf_counter()
     if phase in ("pack", "encode"):
-        from .encoder import load_streamed_pipeline, load_prepacked_pipeline
+        from .encoder import load_streamed_pipeline, load_prepacked_pipeline, set_dequant_backend
         kwargs = dict(bits=plan["bits"], group_size=64, offload_layers=plan["offload_layers"],
                       source_identity=plan["source_identity"], device="cuda:0")
         if phase == "pack":
@@ -63,7 +65,11 @@ def worker(phase, plan_path):
             pipe, conversion = load_prepacked_pipeline(plan["source"], packed_dir=plan["packed"], **kwargs)
         else:
             pipe, conversion = load_streamed_pipeline(plan["source"], **kwargs)
+        torch.cuda.synchronize()
+        loaded = time.perf_counter()
         if phase == "encode":
+            set_dequant_backend(pipe, plan.get("encoder_dequant", "torch"))
+            conversion["dequant_backend"] = plan.get("encoder_dequant", "torch")
             tensors = {}
             with torch.no_grad():
                 for prefix, prompt in (("", plan["prompt"]), ("negative_", plan["negative_prompt"])):
@@ -75,24 +81,31 @@ def worker(phase, plan_path):
                     del embeds, mask
             save_file(tensors, str(out / "conditions.safetensors"))
         write_json(out / f"{phase}.json", {"status": "complete", "seconds": time.perf_counter()-started,
+                   "timings": {"load_seconds": loaded-started, "encode_and_save_seconds": time.perf_counter()-loaded},
                    "conversion": conversion})
         return
     from .generator_loading import load_direct_stage
     from .generator import streamed_fused_int8
     pipe = load_direct_stage(plan["source"], "generate")
+    staged = time.perf_counter()
     conversion = streamed_fused_int8(pipe, {"attention": "sdpa", "conversion_device": "cuda:0"})
+    converted = time.perf_counter()
     pipe.enable_model_cpu_offload(device="cuda:0")
     pipe.scheduler = type(pipe.scheduler).from_config(pipe.scheduler.config, shift=plan["shift"])
     tensors = load_file(str(out / "conditions.safetensors"))
     shape = (1, pipe.transformer.config.latent_channels, plan["height"]//16, plan["width"]//16)
     noise = torch.randn(shape, generator=torch.Generator("cpu").manual_seed(plan["seed"]), dtype=torch.float32)
     save_file({"initial_noise": noise}, str(out / "initial_noise.safetensors"))
+    torch.cuda.synchronize()
+    prepared = time.perf_counter()
     with torch.no_grad():
         image = pipe(**tensors, latents=noise, width=plan["width"], height=plan["height"],
                      num_inference_steps=plan["steps"], guidance_scale=plan["guidance_scale"],
                      uncond_skip_layers=[22], num_images_per_prompt=1, output_type="pil").images[0]
     image.save(out / "image.png")
     write_json(out / "generate.json", {"status": "complete", "seconds": time.perf_counter()-started,
+               "timings": {"load_seconds": staged-started, "convert_seconds": converted-staged,
+                           "prepare_seconds": prepared-converted, "denoise_decode_save_seconds": time.perf_counter()-prepared},
                "conversion": conversion})
 
 
@@ -137,7 +150,8 @@ def main(argv=None):
     record = {"status": "running", "phases": []}
     started = time.perf_counter()
     try:
-        source, identity = resolve_source(args.model, args.revision, args.source_version, "encode", args.offline)
+        source, identity = resolve_source(args.model, args.revision, args.source_version, "encode", args.offline,
+                                          encoder_weights=not bool(getattr(args, "packed", None)))
         if args.command == "generate":
             generated_source, gen_identity = resolve_source(args.model, args.revision, args.source_version, "generate", args.offline)
             if generated_source != source or gen_identity != identity:

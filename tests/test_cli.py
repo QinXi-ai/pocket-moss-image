@@ -28,3 +28,20 @@ def test_internal_worker_dispatch(monkeypatch):
     monkeypatch.setattr("moss_mini.cli.worker", lambda phase, path: calls.append((phase, str(path))))
     main(["_worker", "encode", "plan.json"])
     assert calls == [("encode", "plan.json")]
+
+
+def test_packed_hub_resolution_excludes_original_encoder_shards(monkeypatch, tmp_path):
+    import sys
+    import types
+    (tmp_path / "pipeline_moss_image.py").write_text("# test")
+    calls = []
+    def download(model, **kwargs):
+        calls.append(kwargs)
+        return str(tmp_path)
+    monkeypatch.setitem(sys.modules, 'huggingface_hub', types.SimpleNamespace(snapshot_download=download))
+    resolve_source('organization/model', 'revision', None, 'encode', encoder_weights=False)
+    patterns = calls[-1]['allow_patterns']
+    assert 'text_encoder/config.json' in patterns and 'tokenizer/*' in patterns
+    assert 'text_encoder/*' not in patterns
+    resolve_source('organization/model', 'revision', None, 'encode')
+    assert 'text_encoder/*' in calls[-1]['allow_patterns']

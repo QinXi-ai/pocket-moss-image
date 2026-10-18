@@ -44,6 +44,8 @@ Default settings: 1024×1024, 50 steps, seed 42, CFG 3, shift 5, unconditional s
 
 The encoder process exits before the generator starts. Linear weights are packed, while embedding/norm/convolution state stays BF16. Each Linear temporarily reconstructs a BF16 matrix for GEMM. **INT6 refers to weight storage, not a fused INT6 compute kernel.** The DiT uses fused W8A8 computation and model CPU offload; source DiT tensors are loaded one block at a time.
 
+An experimental `--encoder-dequant triton` option fuses unpacking and scaling. It reduced warm 256-token encoder forward time by about 21% in a bounded test, with exact conditions and image replay; it did not measurably improve whole-command latency or VRAM peak. The default remains PyTorch. See the [engineering profile and next priorities](docs/engineering.md).
+
 ## Pack once, reuse
 
 Avoid repeating CPU quantization on every run:
@@ -66,7 +68,7 @@ moss-mini generate --model /path/to/MOSS-Image-SFT \
   --prompt 'a photo of three tennis rackets' --output outputs/rackets
 ```
 
-Use the same `--model` and `--source-version` for packing and generation. A local identity is caller-declared: change the version whenever weights, tokenizer or pipeline code change. It does not cryptographically verify content. Original snapshots remain necessary for tokenizer/configuration and generator weights; packed artifacts are not standalone model distributions.
+Use the same `--model` and `--source-version` for packing and generation. A local identity is caller-declared: change the version whenever weights, tokenizer or pipeline code change. It does not cryptographically verify content. Original snapshots remain necessary for tokenizer/configuration and generator weights; packed artifacts are not standalone model distributions. With `--packed`, Hub downloads exclude the unused original text-encoder weight shards.
 
 ## Other precisions
 

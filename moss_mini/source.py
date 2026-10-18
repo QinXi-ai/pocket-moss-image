@@ -5,7 +5,7 @@ MODEL = "OpenMOSS-Team/MOSS-Image-SFT"
 REVISION = "797fa8e678b4f0a766271bf5103e6cd7a2faa999"
 
 
-def resolve_source(model, revision, source_version, phase, offline=False):
+def resolve_source(model, revision, source_version, phase, offline=False, *, encoder_weights=True):
     root = Path(model).expanduser()
     if root.is_dir():
         if not source_version:
@@ -16,8 +16,11 @@ def resolve_source(model, revision, source_version, phase, offline=False):
             raise ValueError("--source-version is only for local models")
         from huggingface_hub import snapshot_download
         components = ["text_encoder", "tokenizer"] if phase == "encode" else ["transformer", "scheduler", "vae"]
+        patterns = [f"{p}/*" for p in components]
+        if phase == "encode" and not encoder_weights:
+            patterns = ["text_encoder/config.json", "tokenizer/*"]
         root = Path(snapshot_download(model, revision=revision, local_files_only=offline,
-                    allow_patterns=["*.py", "model_index.json", *[f"{p}/*" for p in components]]))
+                    allow_patterns=["*.py", "model_index.json", *patterns]))
         identity = {"kind": "hub", "repo_id": model, "revision": root.name}
     if not (root / "pipeline_moss_image.py").is_file():
         raise ValueError("Source must include the official pipeline_moss_image.py")

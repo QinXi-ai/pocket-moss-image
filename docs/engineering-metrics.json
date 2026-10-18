@@ -1,0 +1,303 @@
+{
+  "hardware": "RTX 4090D 24GiB",
+  "microbenchmark": {
+    "device": "NVIDIA GeForce RTX 4090 D",
+    "rows": [
+      {
+        "bits": 4,
+        "shape": [
+          3,
+          256
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.11400533517201741,
+          "incremental_allocated_peak_bytes": 4608
+        },
+        "triton": {
+          "milliseconds": 0.035293865203857425,
+          "incremental_allocated_peak_bytes": 1536
+        }
+      },
+      {
+        "bits": 4,
+        "shape": [
+          512,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.12769280274709066,
+          "incremental_allocated_peak_bytes": 12582912
+        },
+        "triton": {
+          "milliseconds": 0.03648853302001953,
+          "incremental_allocated_peak_bytes": 4194304
+        }
+      },
+      {
+        "bits": 4,
+        "shape": [
+          12288,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 1.8200575510660808,
+          "incremental_allocated_peak_bytes": 301989888
+        },
+        "triton": {
+          "milliseconds": 0.17899519602457684,
+          "incremental_allocated_peak_bytes": 100663296
+        }
+      },
+      {
+        "bits": 6,
+        "shape": [
+          3,
+          256
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.3567274729410807,
+          "incremental_allocated_peak_bytes": 4608
+        },
+        "triton": {
+          "milliseconds": 0.053111465771993,
+          "incremental_allocated_peak_bytes": 1536
+        }
+      },
+      {
+        "bits": 6,
+        "shape": [
+          512,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.5265407880147298,
+          "incremental_allocated_peak_bytes": 12976128
+        },
+        "triton": {
+          "milliseconds": 0.07727786699930826,
+          "incremental_allocated_peak_bytes": 4194304
+        }
+      },
+      {
+        "bits": 6,
+        "shape": [
+          12288,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 2.0873898824055988,
+          "incremental_allocated_peak_bytes": 301989888
+        },
+        "triton": {
+          "milliseconds": 0.22527999877929689,
+          "incremental_allocated_peak_bytes": 100663296
+        }
+      },
+      {
+        "bits": 8,
+        "shape": [
+          3,
+          256
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.08632319768269857,
+          "incremental_allocated_peak_bytes": 4608
+        },
+        "triton": {
+          "milliseconds": 0.05618346532185872,
+          "incremental_allocated_peak_bytes": 1536
+        }
+      },
+      {
+        "bits": 8,
+        "shape": [
+          512,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 0.09891839822133382,
+          "incremental_allocated_peak_bytes": 12582912
+        },
+        "triton": {
+          "milliseconds": 0.053657599290211994,
+          "incremental_allocated_peak_bytes": 4194304
+        }
+      },
+      {
+        "bits": 8,
+        "shape": [
+          12288,
+          4096
+        ],
+        "weight_exact": true,
+        "gemm_exact": true,
+        "torch": {
+          "milliseconds": 1.5509162902832032,
+          "incremental_allocated_peak_bytes": 301989888
+        },
+        "triton": {
+          "milliseconds": 0.1914197285970052,
+          "incremental_allocated_peak_bytes": 100663296
+        }
+      }
+    ]
+  },
+  "full_workflow": {
+    "torch": {
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 57.14017007127404,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_tree_rss_peak_bytes": 8438411264,
+      "sampled_device_gpu_peak_bytes": 8486322176,
+      "errors": [],
+      "timings": {
+        "encode": {
+          "load_seconds": 10.723404120653868,
+          "encode_and_save_seconds": 2.954945858567953
+        },
+        "generate": {
+          "load_seconds": 3.4619788229465485,
+          "convert_seconds": 7.473115589469671,
+          "prepare_seconds": 0.04734770581126213,
+          "denoise_decode_save_seconds": 25.212120447307825
+        }
+      }
+    },
+    "triton": {
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 57.05390255525708,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_tree_rss_peak_bytes": 8472547328,
+      "sampled_device_gpu_peak_bytes": 8486322176,
+      "errors": [],
+      "timings": {
+        "encode": {
+          "load_seconds": 9.564707353711128,
+          "encode_and_save_seconds": 3.5480149164795876
+        },
+        "generate": {
+          "load_seconds": 3.5843140557408333,
+          "convert_seconds": 7.460126958787441,
+          "prepare_seconds": 0.04663588106632233,
+          "denoise_decode_save_seconds": 25.50890401750803
+        }
+      }
+    }
+  },
+  "context256": {
+    "torch": {
+      "status": "complete",
+      "backend": "torch",
+      "shape": [
+        1,
+        256,
+        4096
+      ],
+      "load_seconds": 8.813932295888662,
+      "forwards": [
+        {
+          "repetition": 0,
+          "seconds": 1.6745870970189571
+        },
+        {
+          "repetition": 1,
+          "seconds": 1.0610554069280624
+        },
+        {
+          "repetition": 2,
+          "seconds": 1.1062318123877048
+        },
+        {
+          "repetition": 3,
+          "seconds": 1.063679102808237
+        },
+        {
+          "repetition": 4,
+          "seconds": 1.1629106737673283
+        },
+        {
+          "repetition": 5,
+          "seconds": 1.090003840625286
+        }
+      ],
+      "resources": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 19.518991135060787,
+        "sampled_tree_gpu_peak_bytes": 6627000320,
+        "sampled_tree_rss_peak_bytes": 8422010880,
+        "sampled_device_gpu_peak_bytes": 8475836416,
+        "errors": []
+      },
+      "warm_median_seconds": 1.090003840625286
+    },
+    "triton": {
+      "status": "complete",
+      "backend": "triton",
+      "shape": [
+        1,
+        256,
+        4096
+      ],
+      "load_seconds": 9.43006931990385,
+      "forwards": [
+        {
+          "repetition": 0,
+          "seconds": 1.881857044994831
+        },
+        {
+          "repetition": 1,
+          "seconds": 0.8599308878183365
+        },
+        {
+          "repetition": 2,
+          "seconds": 0.8580408915877342
+        },
+        {
+          "repetition": 3,
+          "seconds": 0.8990684673190117
+        },
+        {
+          "repetition": 4,
+          "seconds": 0.8290453776717186
+        },
+        {
+          "repetition": 5,
+          "seconds": 0.8627583868801594
+        }
+      ],
+      "resources": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 19.149287339299917,
+        "sampled_tree_gpu_peak_bytes": 6624903168,
+        "sampled_tree_rss_peak_bytes": 8365654016,
+        "sampled_device_gpu_peak_bytes": 8473739264,
+        "errors": []
+      },
+      "warm_median_seconds": 0.8599308878183365
+    }
+  },
+  "short_conditions_exact": true,
+  "png_pixels_exact": true,
+  "context256_conditions_exact": true,
+  "cuda_initialized_by_comparison": false
+}

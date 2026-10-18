@@ -49,6 +49,7 @@ class PackedLinear(nn.Module):
                                  or bias.device != qweight.device or not torch.isfinite(bias).all()):
             raise ValueError('Packed bias shape/dtype/device mismatch')
         self.bits, self.group_size, self.in_features = bits, group_size, in_features
+        self.dequant_backend = 'torch'
         self.out_features = qweight.shape[0]
         self.qweight = nn.Parameter(qweight, requires_grad=False)
         self.scale = nn.Parameter(scale, requires_grad=False)
@@ -85,10 +86,26 @@ class PackedLinear(nn.Module):
             raise ValueError('Placement or scale dtype changed')
         maximum = 2 ** (self.bits-1)-1
         with torch.no_grad():
+            if self.dequant_backend == 'triton':
+                from .dequant import dequantize_triton
+                weight = dequantize_triton(self.qweight, self.scale, self.bits, self.group_size, self.in_features)
+                return F.linear(inputs, weight, self.bias)
             w = unpack_codes(self.qweight, self.bits).float().sub_(maximum)
             w = w.reshape(self.out_features, -1, self.group_size)
             w.mul_(self.scale[..., None])
             return F.linear(inputs, w.reshape(self.out_features, self.in_features).to(torch.bfloat16), self.bias)
+
+
+def set_dequant_backend(pipe, backend):
+    if backend not in ('torch', 'triton'):
+        raise ValueError('Unknown dequantization backend')
+    if backend == 'triton':
+        import importlib.util
+        if importlib.util.find_spec('triton') is None:
+            raise RuntimeError('Triton is not installed; choose --encoder-dequant torch')
+    for module in pipe.text_encoder.modules():
+        if isinstance(module, PackedLinear):
+            module.dequant_backend = backend
 
 
 def recipe(bits, group_size):
