@@ -147,3 +147,8 @@ are based only on estimated bytes or operator timings.
 The [second optimization pass](optimization-round2.md) tested CFG step reuse,
 encoder shard loading and unused prologue buffers. It found no demonstrated
 whole-image speedup for these candidates, so they were not added to the runtime.
+
+The [third optimization pass](optimization-round3.md) measured original Triton
+INT8 GEMM tiles, a vendor INT8 multiply with a separate epilogue, and BF16 SDPA
+backends. None justified adoption: cuDNN's small single-block gain became a
+slowdown in complete generation, and it changed the output.
