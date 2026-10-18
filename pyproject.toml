@@ -11,7 +11,7 @@ license = {file = "LICENSE"}
 requires-python = ">=3.12"
 dependencies = [
   "torch==2.9.1", "diffusers==0.38.0", "transformers==5.17.0",
-  "accelerate>=1.10,<2", "safetensors>=0.6,<1", "Pillow>=10",
+  "accelerate>=1.10,<2", "safetensors>=0.6,<1", "numpy>=1.26,<3", "Pillow>=10",
   "huggingface-hub>=1", "comfy-kitchen==0.2.37", "orbitquant==0.14.0",
   "nvidia-cublas==13.0.0.19; platform_system == 'Linux'",
 ]
