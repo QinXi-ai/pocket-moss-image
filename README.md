@@ -60,6 +60,30 @@ CUDA_VISIBLE_DEVICES=0 moss-mini generate \
 
 Packing also needs a CUDA GPU in this release. The packed INT6 encoder contains 7.66 GB of tensor state; leave additional disk space for metadata and the original model. The manifest is relocatable and binds model identity, configuration and quantization recipe. Do not reuse an artifact with different weights or tokenizer files.
 
+The fused INT8 DiT can also be packed once, avoiding BF16 weight reads and conversion on subsequent commands:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 moss-mini pack-generator --output packed-dit
+CUDA_VISIBLE_DEVICES=0 moss-mini generate \
+  --packed packed-int6/encoder --packed-generator packed-dit/generator \
+  --prompt 'a photo of a yellow skateboard and an orange computer mouse' \
+  --output outputs/skateboard-both-packed
+```
+
+The packed DiT contains 5.41 GB of tensor state. Its loader requires the same source identity, transformer configuration, OrbitQuant 0.14.0 and Comfy Kitchen 0.2.37. It restores one CPU shard at a time and performs no runtime quantization. Both packing commands need the original weights initially.
+
+For another seed with the **same prompt and negative prompt**, reuse saved conditions to skip loading the encoder:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 moss-mini generate \
+  --reuse-conditions outputs/skateboard-both-packed \
+  --packed-generator packed-dit/generator \
+  --prompt 'a photo of a yellow skateboard and an orange computer mouse' \
+  --seed 43 --output outputs/skateboard-seed43
+```
+
+Repeat the original prompt, negative prompt, bit width and max sequence length; the cache checks these fields and model identity before generation. Keep its `plan.json`, `encode.json` and `conditions.safetensors` together. Use `--reuse-conditions` instead of `--packed`. Seed, resolution and sampling settings can change without re-encoding, though other resolutions have not been resource-validated. This reuses the saved tensors exactly; it is not a new encoding or a quality enhancement. [Cache timings and exact replay evidence](docs/cache-optimization.md).
+
 For an existing local snapshot:
 
 ```bash
@@ -68,7 +92,7 @@ moss-mini generate --model /path/to/MOSS-Image-SFT \
   --prompt 'a photo of three tennis rackets' --output outputs/rackets
 ```
 
-Use the same `--model` and `--source-version` for packing and generation. A local identity is caller-declared: change the version whenever weights, tokenizer or pipeline code change. It does not cryptographically verify content. Original snapshots remain necessary for tokenizer/configuration and generator weights; packed artifacts are not standalone model distributions. With `--packed`, Hub downloads exclude the unused original text-encoder weight shards.
+Use the same `--model` and `--source-version` for packing and generation. A local identity is caller-declared: change the version whenever weights, tokenizer or pipeline code change. It does not cryptographically verify content. Source pipeline code, configuration, scheduler and VAE remain necessary; packed artifacts are not standalone model distributions. With `--packed` or `--reuse-conditions`, Hub downloads exclude the original text-encoder weight shards. With `--packed-generator`, they also exclude the original DiT weight shards. Tokenizer/configuration files are still resolved.
 
 ## Other precisions
 

@@ -5,6 +5,10 @@ end-to-end opportunity than optimizing one unpack operator. Measurements below
 use the same RTX 4090D 24GiB environment as the release, INT6/g64/offload20,
 and unchanged BF16 GEMMs. [Machine-readable evidence](engineering-metrics.json).
 
+Follow-up: prepacked DiT loading and explicit condition reuse are now implemented.
+See [cache optimization measurements](cache-optimization.md). The original profile
+below is retained so its measurements and initial priorities remain traceable.
+
 ## What was implemented
 
 1. An opt-in Triton kernel combines packed integer extraction, FP32 scaling and
@@ -14,7 +18,8 @@ and unchanged BF16 GEMMs. [Machine-readable evidence](engineering-metrics.json).
    denoising/decoding. These appear in each run's `encode.json` and `generate.json`.
 3. With `--packed`, Hub resolution requests only encoder configuration and
    tokenizer files instead of also fetching original BF16 text-encoder shards.
-   Generation still needs the original DiT, scheduler, VAE and pipeline code.
+   The original DiT is needed unless `--packed-generator` is supplied; scheduler,
+   VAE and pipeline code remain necessary.
 
 The default remains `--encoder-dequant torch`. The optional kernel is explicit:
 

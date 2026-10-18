@@ -1,0 +1,330 @@
+{
+  "status": "complete",
+  "protocol": {
+    "model_revision": "797fa8e678b4f0a766271bf5103e6cd7a2faa999",
+    "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+    "seed": 42,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "steps": 50,
+    "bits": 6,
+    "group_size": 64,
+    "offload_layers": 20,
+    "encoder_dequant": "torch",
+    "cpu_threads": 4,
+    "gpu": "RTX 4090D 24GiB",
+    "sample_interval_seconds": 0.025,
+    "hardware_limit_claim": "Process measurements only; no physical 8GB GPU / 16GB host test",
+    "order": [
+      "reference-1",
+      "packed-1",
+      "packed-2",
+      "reference-2",
+      "reference-3",
+      "packed-3",
+      "reuse-1",
+      "reuse-2"
+    ],
+    "caveat": "First run has first-use compilation/cache cost. Shared host, small sample, one prompt."
+  },
+  "runs": [
+    {
+      "label": "reference-1",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 81.42495045438409,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8510984192,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8461799424,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 17.22406419366598,
+        "timings": {
+          "load_seconds": 10.063553001731634,
+          "encode_and_save_seconds": 7.160511791706085
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 56.74522880837321,
+        "timings": {
+          "load_seconds": 15.198120784014463,
+          "convert_seconds": 7.930096000432968,
+          "prepare_seconds": 0.04696592688560486,
+          "denoise_decode_save_seconds": 33.57004875317216
+        },
+        "loading": null
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "packed-1",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 53.06187602877617,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8476397568,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8469733376,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 12.147007085382938,
+        "timings": {
+          "load_seconds": 9.12946879863739,
+          "encode_and_save_seconds": 3.017538834363222
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 33.43337670341134,
+        "timings": {
+          "load_seconds": 6.293351922184229,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.849437490105629,
+          "denoise_decode_save_seconds": 26.290589824318886
+        },
+        "loading": "prepacked fused INT8; one CPU shard at a time"
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "packed-2",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 54.04854653775692,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8388915200,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8462483456,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 13.724291767925024,
+        "timings": {
+          "load_seconds": 10.949832912534475,
+          "encode_and_save_seconds": 2.7744597159326077
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.875404585152864,
+        "timings": {
+          "load_seconds": 6.040986105799675,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8713221997022629,
+          "denoise_decode_save_seconds": 25.96309708431363
+        },
+        "loading": "prepacked fused INT8; one CPU shard at a time"
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "reference-2",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 56.58175214380026,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8381923328,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8471195648,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 11.841217271983624,
+        "timings": {
+          "load_seconds": 8.941094420850277,
+          "encode_and_save_seconds": 2.900123704224825
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 37.15712308511138,
+        "timings": {
+          "load_seconds": 3.6471378058195114,
+          "convert_seconds": 7.674892578274012,
+          "prepare_seconds": 0.060546837747097015,
+          "denoise_decode_save_seconds": 25.77454688772559
+        },
+        "loading": null
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "reference-3",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 55.718681301921606,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8363503616,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8465874944,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 11.506712455302477,
+        "timings": {
+          "load_seconds": 8.710629358887672,
+          "encode_and_save_seconds": 2.796083629131317
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 36.89778198301792,
+        "timings": {
+          "load_seconds": 3.635688830167055,
+          "convert_seconds": 7.682602114975452,
+          "prepare_seconds": 0.060619693249464035,
+          "denoise_decode_save_seconds": 25.518874015659094
+        },
+        "loading": null
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "packed-3",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 52.42569223791361,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 8498593792,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8771534848,
+      "largest_child_lifetime_rss_bytes": 8466763776,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 11.423093248158693,
+        "timings": {
+          "load_seconds": 8.700145795941353,
+          "encode_and_save_seconds": 2.722948256880045
+        },
+        "loading": "prepacked per-layer safetensors; no runtime CPU quantization"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 33.49653108417988,
+        "timings": {
+          "load_seconds": 6.51204689219594,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8054404072463512,
+          "denoise_decode_save_seconds": 26.179046619683504
+        },
+        "loading": "prepacked fused INT8; one CPU shard at a time"
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "reuse-1",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 38.46711675450206,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 7360069632,
+      "sampled_tree_gpu_peak_bytes": 6406799360,
+      "sampled_device_gpu_peak_bytes": 8540848128,
+      "largest_child_lifetime_rss_bytes": 7307788288,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 0.04181260988116264,
+        "timings": {},
+        "loading": "validated saved conditions; encoder not loaded"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.53443078696728,
+        "timings": {
+          "load_seconds": 5.821738589555025,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8019953072071075,
+          "denoise_decode_save_seconds": 25.91069946810603
+        },
+        "loading": "prepacked fused INT8; one CPU shard at a time"
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    },
+    {
+      "label": "reuse-2",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 38.230646304786205,
+      "errors": [],
+      "sampled_tree_rss_peak_bytes": 7361626112,
+      "sampled_tree_gpu_peak_bytes": 6406799360,
+      "sampled_device_gpu_peak_bytes": 8540848128,
+      "largest_child_lifetime_rss_bytes": 7309295616,
+      "observed_process_peaks_below_decimal_8GB_gpu_16GB_ram": true,
+      "encode": {
+        "status": "complete",
+        "seconds": 0.04761179909110069,
+        "timings": {},
+        "loading": "validated saved conditions; encoder not loaded"
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.31492595374584,
+        "timings": {
+          "load_seconds": 5.804629001766443,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.783765584230423,
+          "denoise_decode_save_seconds": 25.72653380408883
+        },
+        "loading": "prepacked fused INT8; one CPU shard at a time"
+      },
+      "conditions_exact": true,
+      "noise_exact": true,
+      "image_pixels_exact": true
+    }
+  ],
+  "packed_generator": {
+    "recipe": "moss-orbit-fused-rowabsmax-int8-v1",
+    "state_bytes": 5413609536,
+    "tensor_count": 547,
+    "backend": {
+      "orbitquant": "0.14.0",
+      "comfy-kitchen": "0.2.37"
+    },
+    "layout": {
+      "family": "moss_image",
+      "version": 1,
+      "dense": "int8"
+    },
+    "pack_seconds": 16.78356258943677
+  },
+  "cold_parity": {
+    "status": "complete",
+    "tensor_count": 547,
+    "all_tensors_exact": true,
+    "cuda_initialized": false,
+    "state_bytes": 5413609536
+  }
+}

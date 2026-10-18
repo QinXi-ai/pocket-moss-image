@@ -3,6 +3,17 @@ import json
 from pathlib import Path
 
 
+def empty_transformer(source):
+    import torch
+    from diffusers.utils.dynamic_modules_utils import get_class_from_dynamic_module
+    source = Path(source)
+    cls = get_class_from_dynamic_module(str(source), module_file='pipeline_moss_image.py',
+        class_name='MOSSImageTransformer', local_files_only=True, trust_remote_code=True)
+    with torch.device('meta'):
+        model = cls.from_config(str(source/'transformer/config.json'))
+    return model.to(dtype=torch.bfloat16).eval()
+
+
 def load_direct_stage(source, phase, offload='none', device='cpu'):
     if phase != 'generate' or offload != 'none' or device != 'cpu':
         raise ValueError('Direct loader is only the initial generation CPU/meta stage')
@@ -10,11 +21,7 @@ def load_direct_stage(source, phase, offload='none', device='cpu'):
     from diffusers.utils.dynamic_modules_utils import get_class_from_dynamic_module
     from safetensors import safe_open
     source = Path(source)
-    cls = get_class_from_dynamic_module(str(source), module_file='pipeline_moss_image.py',
-        class_name='MOSSImageTransformer', local_files_only=True, trust_remote_code=True)
-    with torch.device('meta'):
-        model = cls.from_config(str(source/'transformer/config.json'))
-    model.to(dtype=torch.bfloat16)
+    model = empty_transformer(source)
     index = json.loads((source/'transformer/diffusion_pytorch_model.safetensors.index.json').read_text())['weight_map']
     expected = model.state_dict()
     if set(index) != set(expected):
@@ -38,6 +45,13 @@ def load_direct_stage(source, phase, offload='none', device='cpu'):
         del state
     model.__dict__['_direct_source'] = str(source/'transformer')
     model.__dict__['_direct_index'] = index
+    return assemble_pipeline(source, model)
+
+
+def assemble_pipeline(source, model):
+    import torch
+    from diffusers.utils.dynamic_modules_utils import get_class_from_dynamic_module
+    source = Path(source)
     pipeline_class = get_class_from_dynamic_module(str(source), module_file='pipeline_moss_image.py',
         class_name='MOSSImagePipeline', local_files_only=True, trust_remote_code=True)
     from diffusers import AutoencoderKLFlux2

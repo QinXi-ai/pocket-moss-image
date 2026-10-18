@@ -45,3 +45,15 @@ def test_packed_hub_resolution_excludes_original_encoder_shards(monkeypatch, tmp
     assert 'text_encoder/*' not in patterns
     resolve_source('organization/model', 'revision', None, 'encode')
     assert 'text_encoder/*' in calls[-1]['allow_patterns']
+    resolve_source('organization/model', 'revision', None, 'generate', generator_weights=False)
+    patterns = calls[-1]['allow_patterns']
+    assert 'transformer/config.json' in patterns and 'transformer/*' not in patterns
+    assert 'vae/*' in patterns and 'scheduler/*' in patterns
+
+
+def test_pack_generator_parser_and_paths():
+    args = parser().parse_args(['pack-generator', '--output', 'outputs/packed-generator'])
+    assert args.command == 'pack-generator'
+    args = parser().parse_args(['generate', '--prompt', 'a cat', '--output', 'outputs/cat',
+                               '--packed-generator', 'models/dit'])
+    assert str(args.packed_generator).replace('\\', '/') == 'models/dit'

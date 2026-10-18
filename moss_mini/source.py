@@ -5,7 +5,7 @@ MODEL = "OpenMOSS-Team/MOSS-Image-SFT"
 REVISION = "797fa8e678b4f0a766271bf5103e6cd7a2faa999"
 
 
-def resolve_source(model, revision, source_version, phase, offline=False, *, encoder_weights=True):
+def resolve_source(model, revision, source_version, phase, offline=False, *, encoder_weights=True, generator_weights=True):
     root = Path(model).expanduser()
     if root.is_dir():
         if not source_version:
@@ -19,6 +19,8 @@ def resolve_source(model, revision, source_version, phase, offline=False, *, enc
         patterns = [f"{p}/*" for p in components]
         if phase == "encode" and not encoder_weights:
             patterns = ["text_encoder/config.json", "tokenizer/*"]
+        if phase == "generate" and not generator_weights:
+            patterns = ["transformer/config.json", "scheduler/*", "vae/*"]
         root = Path(snapshot_download(model, revision=revision, local_files_only=offline,
                     allow_patterns=["*.py", "model_index.json", *patterns]))
         identity = {"kind": "hub", "repo_id": model, "revision": root.name}

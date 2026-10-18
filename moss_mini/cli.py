@@ -20,17 +20,22 @@ def write_json(path, value):
 def parser():
     p = argparse.ArgumentParser(description="MOSS Mini: original 9B encoder, packed weights, fused INT8 DiT")
     sub = p.add_subparsers(dest="command", required=True)
-    for name in ("pack", "generate"):
+    for name in ("pack", "pack-generator", "generate"):
         q = sub.add_parser(name)
         q.add_argument("--model", default=MODEL)
         q.add_argument("--revision", default=REVISION)
         q.add_argument("--source-version", help="Required portable identity for a local model directory")
         q.add_argument("--offline", action="store_true")
-        q.add_argument("--bits", type=int, choices=(4, 6, 8), default=6)
-        q.add_argument("--offload-layers", type=int, help="CPU-offloaded leading layers; default 20/12/16 for INT6/4/8")
+        if name != 'pack-generator':
+            q.add_argument("--bits", type=int, choices=(4, 6, 8), default=6)
+            q.add_argument("--offload-layers", type=int, help="CPU-offloaded leading layers; default 20/12/16 for INT6/4/8")
+        else:
+            q.set_defaults(bits=6, offload_layers=None)
         q.add_argument("--cpu-threads", type=int, default=4)
         q.add_argument("--output", type=Path, required=True, help="New directory; existing directories are never overwritten")
         if name == "generate":
+            q.add_argument("--packed-generator", type=Path, help="Prepacked fused DiT directory from pack-generator")
+            q.add_argument("--reuse-conditions", type=Path, help="Reuse completed conditions from an earlier output directory")
             q.add_argument("--encoder-dequant", choices=("torch", "triton"), default="torch",
                            help="Experimental Triton fused unpack/scale, or reference torch (default)")
             q.add_argument("--packed", type=Path, help="Prepacked encoder directory from moss-mini pack")
@@ -84,12 +89,23 @@ def worker(phase, plan_path):
                    "timings": {"load_seconds": loaded-started, "encode_and_save_seconds": time.perf_counter()-loaded},
                    "conversion": conversion})
         return
-    from .generator_loading import load_direct_stage
-    from .generator import streamed_fused_int8
-    pipe = load_direct_stage(plan["source"], "generate")
-    staged = time.perf_counter()
-    conversion = streamed_fused_int8(pipe, {"attention": "sdpa", "conversion_device": "cuda:0"})
-    converted = time.perf_counter()
+    if plan.get("packed_generator"):
+        from .generator_cache import load_prepacked_generator
+        pipe, conversion = load_prepacked_generator(plan["source"], plan["packed_generator"], plan["source_identity"])
+        staged = converted = time.perf_counter()
+    else:
+        from .generator_loading import load_direct_stage
+        from .generator import streamed_fused_int8
+        pipe = load_direct_stage(plan["source"], "generate")
+        staged = time.perf_counter()
+        conversion = streamed_fused_int8(pipe, {"attention": "sdpa", "conversion_device": "cuda:0"})
+        converted = time.perf_counter()
+    if phase == 'pack-generator':
+        from .generator_cache import export_generator
+        artifact = export_generator(pipe.transformer, out/'generator', plan['source'], plan['source_identity'])
+        write_json(out/'pack-generator.json', {'status': 'complete', 'seconds': time.perf_counter()-started,
+                   'conversion': conversion, 'artifact': artifact})
+        return
     pipe.enable_model_cpu_offload(device="cuda:0")
     pipe.scheduler = type(pipe.scheduler).from_config(pipe.scheduler.config, shift=plan["shift"])
     tensors = load_file(str(out / "conditions.safetensors"))
@@ -127,9 +143,17 @@ def child_environment(threads):
 
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ['_reuse']:
+        internal = argparse.ArgumentParser()
+        internal.add_argument('plan', type=Path)
+        args = internal.parse_args(argv[1:])
+        from .condition_cache import reuse_conditions
+        plan = json.loads(args.plan.read_text(encoding='utf-8'))
+        reuse_conditions(plan['reuse_conditions'], args.plan.parent, plan)
+        return
     if argv[:1] == ["_worker"]:
         internal = argparse.ArgumentParser()
-        internal.add_argument("phase", choices=("pack", "encode", "generate"))
+        internal.add_argument("phase", choices=("pack", "pack-generator", "encode", "generate"))
         internal.add_argument("plan", type=Path)
         args = internal.parse_args(argv[1:])
         worker(args.phase, args.plan)
@@ -141,6 +165,8 @@ def main(argv=None):
     if not 0 <= offload <= 32:
         raise ValueError("--offload-layers must be between 0 and 32")
     if args.command == "generate":
+        if args.reuse_conditions and args.packed:
+            raise ValueError('--packed and --reuse-conditions are alternatives; omit --packed to reuse conditions')
         if any(n < 16 or n % 16 for n in (args.width, args.height)):
             raise ValueError("Image dimensions must be positive multiples of 16")
         if args.steps < 1 or not 1 <= args.max_sequence_length <= 256 or not 0 <= args.seed < 2**63:
@@ -150,20 +176,39 @@ def main(argv=None):
     record = {"status": "running", "phases": []}
     started = time.perf_counter()
     try:
-        source, identity = resolve_source(args.model, args.revision, args.source_version, "encode", args.offline,
-                                          encoder_weights=not bool(getattr(args, "packed", None)))
+        source_phase = 'generate' if args.command == 'pack-generator' else 'encode'
+        source, identity = resolve_source(args.model, args.revision, args.source_version, source_phase, args.offline,
+                                          encoder_weights=not bool(getattr(args, "packed", None) or getattr(args, "reuse_conditions", None)))
         if args.command == "generate":
-            generated_source, gen_identity = resolve_source(args.model, args.revision, args.source_version, "generate", args.offline)
+            generated_source, gen_identity = resolve_source(args.model, args.revision, args.source_version, "generate", args.offline,
+                                                            generator_weights=not bool(args.packed_generator))
             if generated_source != source or gen_identity != identity:
                 raise ValueError("Encoder and generator must use the same pinned source")
         plan = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
         if plan.get("packed"):
             plan["packed"] = str(Path(plan["packed"]).expanduser().resolve())
+        if plan.get("packed_generator"):
+            plan["packed_generator"] = str(Path(plan["packed_generator"]).expanduser().resolve())
+        if plan.get('reuse_conditions'):
+            plan['reuse_conditions'] = str(Path(plan['reuse_conditions']).expanduser().resolve())
         plan.update(source=str(source), source_identity=identity, offload_layers=offload)
         write_json(out / "plan.json", plan)
-        phases = ("pack",) if args.command == "pack" else ("encode", "generate")
+        phases = (args.command,) if args.command in ('pack', 'pack-generator') else ("encode", "generate")
+        if plan.get('reuse_conditions'):
+            print('[reuse-conditions] validating saved embeddings and model identity', flush=True)
+            row = {'phase':'reuse-conditions', 'status':'running'}
+            record['phases'].append(row)
+            write_json(out/'run.json', record)
+            # Keep torch imports in a subprocess: the controller stays lightweight.
+            result = subprocess.run([sys.executable, '-m', 'moss_mini', '_reuse', str(out/'plan.json')],
+                                    env=child_environment(args.cpu_threads), stdin=subprocess.DEVNULL)
+            row.update(returncode=result.returncode, status='complete' if result.returncode == 0 else 'failed')
+            if result.returncode:
+                raise RuntimeError('Condition cache validation failed')
+            phases = ('generate',)
         for phase in phases:
-            print(f"[{phase}] INT{args.bits}, {offload} encoder layers offloaded", flush=True)
+            print(f"[{phase}] " + ('fused INT8 DiT' if phase == 'pack-generator' else
+                  f"INT{args.bits}, {offload} encoder layers offloaded"), flush=True)
             row = {"phase": phase, "status": "running"}
             record["phases"].append(row)
             write_json(out / "run.json", record)
@@ -173,7 +218,8 @@ def main(argv=None):
             if result.returncode:
                 raise RuntimeError(f"{phase} failed (exit {result.returncode}); output retained at {out}")
         record["status"] = "complete"
-        print(f"Saved: {out / ('encoder' if args.command == 'pack' else 'image.png')}", flush=True)
+        saved = {'pack': 'encoder', 'pack-generator': 'generator', 'generate': 'image.png'}[args.command]
+        print(f"Saved: {out / saved}", flush=True)
     except BaseException as exc:
         record.update(status="failed", error=str(exc))
         raise
