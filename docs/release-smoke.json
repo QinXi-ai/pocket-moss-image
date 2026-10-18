@@ -1,0 +1,53 @@
+{
+  "hardware": "RTX 4090D 24GiB",
+  "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+  "settings": {
+    "bits": 6,
+    "group_size": 64,
+    "offload_layers": 20,
+    "seed": 42,
+    "steps": 50,
+    "resolution": [
+      1024,
+      1024
+    ]
+  },
+  "cpu_tests_passed": 8,
+  "conditions_exact": true,
+  "noise_exact": true,
+  "packed_streamed_png_pixels_exact": true,
+  "research_runner_png_pixels_exact": true,
+  "cuda_initialized_by_comparison": false,
+  "runs": [
+    {
+      "phase": "pack",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 83.61167247593403,
+      "sampled_tree_rss_peak_bytes": 6761832448,
+      "sampled_tree_gpu_peak_bytes": 2537553920,
+      "sampled_device_gpu_peak_bytes": 4386390016,
+      "errors": []
+    },
+    {
+      "phase": "generate-packed",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 57.50237658619881,
+      "sampled_tree_rss_peak_bytes": 8499326976,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8486322176,
+      "errors": []
+    },
+    {
+      "phase": "generate-stream",
+      "status": "complete",
+      "returncode": 0,
+      "seconds": 90.67871316149831,
+      "sampled_tree_rss_peak_bytes": 7484133376,
+      "sampled_tree_gpu_peak_bytes": 6637486080,
+      "sampled_device_gpu_peak_bytes": 8486322176,
+      "errors": []
+    }
+  ]
+}

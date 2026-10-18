@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "hardware": "RTX 4090D 24GiB",
+  "unit": "bytes, decimal GB = bytes / 1e9",
+  "scope": "12 development prompts x seed42; context256 rows are encoder-only synthetic stress",
+  "rows": [
+    {
+      "run": "p6-9b-int8-off16-dev12-v2",
+      "status": "complete",
+      "returncode": 0,
+      "gpu_process_peak_bytes": 6413090816,
+      "tree_rss_peak_bytes": 9588101120,
+      "whole_device_gpu_peak_bytes": 8261926912,
+      "seconds": 371.1662783138454,
+      "sampling_errors": []
+    },
+    {
+      "run": "p6-9b-int6-prepacked-off20-dev12-v1",
+      "status": "complete",
+      "returncode": 0,
+      "gpu_process_peak_bytes": 6637486080,
+      "tree_rss_peak_bytes": 9603825664,
+      "whole_device_gpu_peak_bytes": 8771534848,
+      "seconds": 321.94943042472005,
+      "sampling_errors": []
+    },
+    {
+      "run": "p6-9b-int4-prepacked-off12-dev12-v1",
+      "status": "complete",
+      "returncode": 0,
+      "gpu_process_peak_bytes": 6413090816,
+      "tree_rss_peak_bytes": 9509761024,
+      "whole_device_gpu_peak_bytes": 8261926912,
+      "seconds": 331.05933932960033,
+      "sampling_errors": []
+    },
+    {
+      "run": "p6-9b-int6-off20-context256-v1",
+      "status": "complete",
+      "returncode": 0,
+      "gpu_process_peak_bytes": 6627000320,
+      "tree_rss_peak_bytes": 8272568320,
+      "whole_device_gpu_peak_bytes": 8761049088,
+      "seconds": 15.112243421375751,
+      "sampling_errors": []
+    },
+    {
+      "run": "p6-9b-int4-off12-context256-v1",
+      "status": "complete",
+      "returncode": 0,
+      "gpu_process_peak_bytes": 6977224704,
+      "tree_rss_peak_bytes": 6328025088,
+      "whole_device_gpu_peak_bytes": 8826060800,
+      "seconds": 14.44535806775093,
+      "sampling_errors": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+MOSS Mini
+Copyright 2026 QinXi and contributors.
+
+This community project builds on OpenMOSS/MOSS-Image, licensed under Apache-2.0:
+https://github.com/OpenMOSS/MOSS-Image
+
+The streamed loading and quantization modules are extracted and adapted from
+our MOSS-Image community engineering work. Changes include packed INT6/INT4
+text weights, portable source identities, and a separate-process CLI.
+
+MOSS Mini imports OrbitQuant and Comfy Kitchen as separately installed
+dependencies; their code and binary libraries are not vendored here.
+Their own licenses apply. Model weights and custom pipeline code are downloaded
+separately from OpenMOSS-Team/MOSS-Image-SFT and retain their upstream terms.
+This repository does not redistribute model weights and is not an official
+OpenMOSS release. The comparison JPEGs are generated outputs, not model weights.
