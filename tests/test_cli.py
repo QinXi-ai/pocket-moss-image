@@ -57,3 +57,13 @@ def test_pack_generator_parser_and_paths():
     args = parser().parse_args(['generate', '--prompt', 'a cat', '--output', 'outputs/cat',
                                '--packed-generator', 'models/dit'])
     assert str(args.packed_generator).replace('\\', '/') == 'models/dit'
+
+
+def test_acceleration_options_are_explicit():
+    base = ['generate', '--prompt', 'cat', '--output', 'outputs/cat']
+    args = parser().parse_args(base)
+    assert not args.request_cache and not args.cache_dit and args.embedding_lookup == 'offload'
+    args = parser().parse_args(base + ['--request-cache', '--cache-dit', '--cache-threshold', '0.1',
+                                     '--embedding-lookup', 'cpu', '--offload-layers', '4'])
+    assert args.request_cache and args.cache_dit and args.cache_threshold == .1
+    assert args.embedding_lookup == 'cpu' and args.offload_layers == 4

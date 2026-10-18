@@ -94,6 +94,48 @@ moss-mini generate --model /path/to/MOSS-Image-SFT \
 
 Use the same `--model` and `--source-version` for packing and generation. A local identity is caller-declared: change the version whenever weights, tokenizer or pipeline code change. It does not cryptographically verify content. Source pipeline code, configuration, scheduler and VAE remain necessary; packed artifacts are not standalone model distributions. With `--packed` or `--reuse-conditions`, Hub downloads exclude the original text-encoder weight shards. With `--packed-generator`, they also exclude the original DiT weight shards. Tokenizer/configuration files are still resolved.
 
+## Optional execution optimizations
+
+For the tested INT6 model, keep the vocabulary lookup on CPU and the 32 packed
+encoder layers on GPU; reuse text/context/RoPE preprocessing within each image:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 moss-mini generate \
+  --packed packed-int6/encoder --packed-generator packed-dit/generator \
+  --embedding-lookup cpu --offload-layers 0 --request-cache \
+  --prompt 'a photo of a yellow skateboard and an orange computer mouse' \
+  --output outputs/skateboard-exact-cache
+```
+
+CPU lookup sends only selected token rows to CUDA instead of the entire 2.03GB
+embedding table. With all INT6 layers resident on GPU, the encoder probe used
+6.60GB task VRAM and 4.91GB tree RSS, with exact short/256-token outputs. Keeping
+20 layers offloaded reduced VRAM further but was slower. `--request-cache`
+reuses timestep-independent text projection, mask/context preparation and RoPE;
+it is scoped to one request and refuses incompatible pipeline source patterns.
+The complete tested command took **51.22→48.32 seconds**, with exact PNG pixels,
+and reduced tree RSS peak **8.50→7.36GB**. These are bounded single-prompt
+measurements. The original defaults remain available without these flags.
+
+[Cache-DiT](https://github.com/vipshop/cache-dit) is also supported as an
+**experimental approximate** option. Install its pinned optional dependency:
+
+```bash
+python -m pip install -e '.[cache]'
+CUDA_VISIBLE_DEVICES=0 moss-mini generate \
+  --reuse-conditions outputs/skateboard-exact-cache \
+  --packed-generator packed-dit/generator --request-cache \
+  --cache-dit --cache-threshold 0.06 \
+  --prompt 'a photo of a yellow skateboard and an orange computer mouse' \
+  --output outputs/skateboard-cache-dit
+```
+
+Cache-DiT 1.5.3 caches middle-block residuals, with separate contexts for positive,
+negative and skipped-layer branches. It changes predictions and image details;
+it is **off by default**. The threshold is not a quality guarantee. In the tested
+short-prompt case, 0.03 gave no hits, while 0.06/0.10 reduced denoising time with
+visible changes to the skateboard graphic. [Measurements and comparisons](docs/acceleration.md).
+
 ## Other precisions
 
 | Option | Default CPU-offloaded leading layers | Intended use |
@@ -102,7 +144,7 @@ Use the same `--model` and `--source-version` for packing and generation. A loca
 | `--bits 4` | 12 | Smaller encoder state; larger visual changes on some prompts |
 | `--bits 8` | 16 | Higher precision reference |
 
-The embedding is always offloaded to CPU. Override with `--offload-layers N` only if you can measure your own resource envelope. More GPU placement can reduce RAM but increases VRAM. The default INT6 and INT4 placements survived a synthetic 256-token encoder stress test. We do not claim longer contexts, larger batches or other resolutions stay inside the same budget.
+The default embedding weight is stored on CPU and temporarily moved to GPU for lookup; `--embedding-lookup cpu` executes the lookup itself on CPU. Override with `--offload-layers N` only if you can measure your own resource envelope. More GPU placement can reduce RAM but increases VRAM. The default INT6/INT4 placements and INT6 CPU lookup with zero offloaded layers survived synthetic 256-token encoder tests. We do not claim longer contexts, larger batches or other resolutions stay inside the same budget.
 
 ## Results and reproducibility
 

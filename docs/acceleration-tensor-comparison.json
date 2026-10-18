@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-18",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "comparison_device": "cpu",
+  "method": "torch.equal on loaded safetensors; decoded PNG pixels via PIL and NumPy",
+  "condition_tensor_names": [
+    "negative_prompt_embeds",
+    "prompt_embeds",
+    "negative_prompt_attention_mask",
+    "prompt_attention_mask"
+  ],
+  "pairs": [
+    {
+      "reference": "reference",
+      "candidate": "exact",
+      "all_condition_tensors_exact": true,
+      "initial_noise_exact": true,
+      "png_pixels_exact": true,
+      "png_mae": 0.0,
+      "png_psnr_db": null
+    },
+    {
+      "reference": "reference",
+      "candidate": "approximate",
+      "all_condition_tensors_exact": true,
+      "initial_noise_exact": true,
+      "png_pixels_exact": false,
+      "png_mae": 2.769576072692871,
+      "png_psnr_db": 27.871789355652936
+    },
+    {
+      "reference": "long-reference",
+      "candidate": "long-exact",
+      "all_condition_tensors_exact": true,
+      "initial_noise_exact": true,
+      "png_pixels_exact": true,
+      "png_mae": 0.0,
+      "png_psnr_db": null
+    }
+  ],
+  "interpretation": "Equality/effect witnesses for existing completed runs; PSNR is pixel deviation, not an image-quality score. No new GPU execution or physical small-memory hardware validation."
+}

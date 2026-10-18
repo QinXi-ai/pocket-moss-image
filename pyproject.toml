@@ -18,6 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "build"]
+cache = ["cache-dit==1.5.3"]
 
 [project.scripts]
 moss-mini = "moss_mini.cli:main"

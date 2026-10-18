@@ -1,0 +1,2492 @@
+{
+  "date": "2026-10-18",
+  "scope": "Bounded engineering measurements; not a held-out quality benchmark",
+  "hardware": "RTX 4090D 24GiB",
+  "cpu_threads": 4,
+  "decimal_units": true,
+  "physical_8GB_GPU_16GB_host_tested": false,
+  "cache_dit_probes": [
+    {
+      "label": "reference",
+      "status": "complete",
+      "settings": {
+        "mode": "reference",
+        "text_cache": false,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": ""
+      },
+      "timings": {
+        "imports_seconds": 1.5185917802155018,
+        "load_seconds": 5.7961002588272095,
+        "prepare_seconds": 0.8056605905294418,
+        "denoise_decode_seconds": 24.990604780614376,
+        "total_seconds": 33.51160567626357
+      },
+      "cuda_allocated_peak_bytes": 5836946944,
+      "cuda_reserved_peak_bytes": 5966397440,
+      "resource": {
+        "status": "complete",
+        "seconds": 35.250229965895414,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7341449216,
+        "errors": []
+      },
+      "pixels": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "psnr_db": null,
+        "changed_fraction": 0.0
+      }
+    },
+    {
+      "label": "threshold0",
+      "status": "complete",
+      "settings": {
+        "mode": "threshold0",
+        "text_cache": false,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": "",
+        "cache_dit_version": "1.5.3",
+        "cache_options": {
+          "threshold": 0.0,
+          "first_blocks": 8,
+          "last_blocks": 2,
+          "warmup_steps": 8,
+          "max_continuous_cached_steps": 1,
+          "num_inference_steps": 50,
+          "max_contexts": 4
+        }
+      },
+      "cache_stats": [
+        {
+          "scope_index": 0,
+          "skip_layers": [],
+          "condition_shape": [
+            1,
+            21,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {}
+        },
+        {
+          "scope_index": 1,
+          "skip_layers": [
+            22
+          ],
+          "condition_shape": [
+            1,
+            10,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {}
+        }
+      ],
+      "timings": {
+        "imports_seconds": 1.4753548614680767,
+        "load_seconds": 5.734515201300383,
+        "prepare_seconds": 0.9188850335776806,
+        "denoise_decode_seconds": 25.008930563926697,
+        "total_seconds": 33.5412537381053
+      },
+      "cuda_allocated_peak_bytes": 5988580864,
+      "cuda_reserved_peak_bytes": 6144655360,
+      "resource": {
+        "status": "complete",
+        "seconds": 35.3082177080214,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7351812096,
+        "errors": []
+      },
+      "pixels": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "psnr_db": null,
+        "changed_fraction": 0.0
+      }
+    },
+    {
+      "label": "cache",
+      "status": "complete",
+      "settings": {
+        "mode": "cache",
+        "text_cache": false,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": "",
+        "cache_dit_version": "1.5.3",
+        "cache_options": {
+          "threshold": 0.03,
+          "first_blocks": 8,
+          "last_blocks": 2,
+          "warmup_steps": 8,
+          "max_continuous_cached_steps": 1,
+          "num_inference_steps": 50,
+          "max_contexts": 4
+        }
+      },
+      "cache_stats": [
+        {
+          "scope_index": 0,
+          "skip_layers": [],
+          "condition_shape": [
+            1,
+            21,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {
+            "8": 0.0751953125,
+            "9": 0.0908203125,
+            "10": 0.06396484375,
+            "11": 0.06396484375,
+            "12": 0.07373046875,
+            "13": 0.053955078125,
+            "14": 0.060546875,
+            "15": 0.053955078125,
+            "16": 0.051025390625,
+            "17": 0.0498046875,
+            "18": 0.048095703125,
+            "19": 0.05029296875,
+            "20": 0.046875,
+            "21": 0.046875,
+            "22": 0.044677734375,
+            "23": 0.04541015625,
+            "24": 0.044677734375,
+            "25": 0.04248046875,
+            "26": 0.041748046875,
+            "27": 0.041259765625,
+            "28": 0.041259765625,
+            "29": 0.042724609375,
+            "30": 0.039794921875,
+            "31": 0.04052734375,
+            "32": 0.042724609375,
+            "33": 0.041015625,
+            "34": 0.041748046875,
+            "35": 0.041259765625,
+            "36": 0.043212890625,
+            "37": 0.044921875,
+            "38": 0.04296875,
+            "39": 0.0478515625,
+            "40": 0.052001953125,
+            "41": 0.052490234375,
+            "42": 0.05712890625,
+            "43": 0.0615234375,
+            "44": 0.0693359375,
+            "45": 0.07763671875,
+            "46": 0.0908203125,
+            "47": 0.11376953125,
+            "48": 0.1455078125,
+            "49": 0.255859375
+          }
+        },
+        {
+          "scope_index": 1,
+          "skip_layers": [
+            22
+          ],
+          "condition_shape": [
+            1,
+            10,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {
+            "8": 0.07958984375,
+            "9": 0.09521484375,
+            "10": 0.06640625,
+            "11": 0.06640625,
+            "12": 0.07666015625,
+            "13": 0.054931640625,
+            "14": 0.0625,
+            "15": 0.0546875,
+            "16": 0.0517578125,
+            "17": 0.0498046875,
+            "18": 0.0478515625,
+            "19": 0.05078125,
+            "20": 0.04638671875,
+            "21": 0.046875,
+            "22": 0.044677734375,
+            "23": 0.04541015625,
+            "24": 0.044189453125,
+            "25": 0.04248046875,
+            "26": 0.041748046875,
+            "27": 0.040771484375,
+            "28": 0.041015625,
+            "29": 0.0419921875,
+            "30": 0.0400390625,
+            "31": 0.0400390625,
+            "32": 0.042724609375,
+            "33": 0.041015625,
+            "34": 0.041259765625,
+            "35": 0.040771484375,
+            "36": 0.042724609375,
+            "37": 0.044677734375,
+            "38": 0.04248046875,
+            "39": 0.0478515625,
+            "40": 0.0517578125,
+            "41": 0.052734375,
+            "42": 0.057373046875,
+            "43": 0.062255859375,
+            "44": 0.06884765625,
+            "45": 0.07763671875,
+            "46": 0.091796875,
+            "47": 0.115234375,
+            "48": 0.1455078125,
+            "49": 0.255859375
+          }
+        }
+      ],
+      "timings": {
+        "imports_seconds": 1.4987788572907448,
+        "load_seconds": 5.785777077078819,
+        "prepare_seconds": 0.9311070702970028,
+        "denoise_decode_seconds": 25.09421830996871,
+        "total_seconds": 33.71353819221258
+      },
+      "cuda_allocated_peak_bytes": 5988580864,
+      "cuda_reserved_peak_bytes": 6144655360,
+      "resource": {
+        "status": "complete",
+        "seconds": 35.454921670258045,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7358279680,
+        "errors": []
+      },
+      "pixels": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "psnr_db": null,
+        "changed_fraction": 0.0
+      }
+    },
+    {
+      "label": "text-cache",
+      "status": "complete",
+      "settings": {
+        "mode": "reference",
+        "text_cache": true,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": ""
+      },
+      "text_cache_stats": {
+        "root_calls": 100,
+        "hits": 98,
+        "misses": 2,
+        "bypass": 0,
+        "evictions": 0,
+        "peak_entries": 2,
+        "peak_bytes": 190464,
+        "current_entries": 0,
+        "current_bytes": 0
+      },
+      "timings": {
+        "imports_seconds": 1.5200366377830505,
+        "load_seconds": 6.108075458556414,
+        "prepare_seconds": 0.9014792069792747,
+        "denoise_decode_seconds": 24.772017046809196,
+        "total_seconds": 33.70419129356742
+      },
+      "cuda_allocated_peak_bytes": 5837008384,
+      "cuda_reserved_peak_bytes": 5966397440,
+      "resource": {
+        "status": "complete",
+        "seconds": 35.46254824101925,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7376883712,
+        "errors": []
+      },
+      "pixels": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "psnr_db": null,
+        "changed_fraction": 0.0
+      }
+    },
+    {
+      "label": "cache-text",
+      "status": "complete",
+      "settings": {
+        "mode": "cache",
+        "text_cache": true,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": "",
+        "cache_dit_version": "1.5.3",
+        "cache_options": {
+          "threshold": 0.03,
+          "first_blocks": 8,
+          "last_blocks": 2,
+          "warmup_steps": 8,
+          "max_continuous_cached_steps": 1,
+          "num_inference_steps": 50,
+          "max_contexts": 4
+        }
+      },
+      "cache_stats": [
+        {
+          "scope_index": 0,
+          "skip_layers": [],
+          "condition_shape": [
+            1,
+            21,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {
+            "8": 0.0751953125,
+            "9": 0.0908203125,
+            "10": 0.06396484375,
+            "11": 0.06396484375,
+            "12": 0.07373046875,
+            "13": 0.053955078125,
+            "14": 0.060546875,
+            "15": 0.053955078125,
+            "16": 0.051025390625,
+            "17": 0.0498046875,
+            "18": 0.048095703125,
+            "19": 0.05029296875,
+            "20": 0.046875,
+            "21": 0.046875,
+            "22": 0.044677734375,
+            "23": 0.04541015625,
+            "24": 0.044677734375,
+            "25": 0.04248046875,
+            "26": 0.041748046875,
+            "27": 0.041259765625,
+            "28": 0.041259765625,
+            "29": 0.042724609375,
+            "30": 0.039794921875,
+            "31": 0.04052734375,
+            "32": 0.042724609375,
+            "33": 0.041015625,
+            "34": 0.041748046875,
+            "35": 0.041259765625,
+            "36": 0.043212890625,
+            "37": 0.044921875,
+            "38": 0.04296875,
+            "39": 0.0478515625,
+            "40": 0.052001953125,
+            "41": 0.052490234375,
+            "42": 0.05712890625,
+            "43": 0.0615234375,
+            "44": 0.0693359375,
+            "45": 0.07763671875,
+            "46": 0.0908203125,
+            "47": 0.11376953125,
+            "48": 0.1455078125,
+            "49": 0.255859375
+          }
+        },
+        {
+          "scope_index": 1,
+          "skip_layers": [
+            22
+          ],
+          "condition_shape": [
+            1,
+            10,
+            4096
+          ],
+          "hits": 0,
+          "calls": 50,
+          "misses": 50,
+          "cached_steps": [],
+          "residual_diffs": {
+            "8": 0.07958984375,
+            "9": 0.09521484375,
+            "10": 0.06640625,
+            "11": 0.06640625,
+            "12": 0.07666015625,
+            "13": 0.054931640625,
+            "14": 0.0625,
+            "15": 0.0546875,
+            "16": 0.0517578125,
+            "17": 0.0498046875,
+            "18": 0.0478515625,
+            "19": 0.05078125,
+            "20": 0.04638671875,
+            "21": 0.046875,
+            "22": 0.044677734375,
+            "23": 0.04541015625,
+            "24": 0.044189453125,
+            "25": 0.04248046875,
+            "26": 0.041748046875,
+            "27": 0.040771484375,
+            "28": 0.041015625,
+            "29": 0.0419921875,
+            "30": 0.0400390625,
+            "31": 0.0400390625,
+            "32": 0.042724609375,
+            "33": 0.041015625,
+            "34": 0.041259765625,
+            "35": 0.040771484375,
+            "36": 0.042724609375,
+            "37": 0.044677734375,
+            "38": 0.04248046875,
+            "39": 0.0478515625,
+            "40": 0.0517578125,
+            "41": 0.052734375,
+            "42": 0.057373046875,
+            "43": 0.062255859375,
+            "44": 0.06884765625,
+            "45": 0.07763671875,
+            "46": 0.091796875,
+            "47": 0.115234375,
+            "48": 0.1455078125,
+            "49": 0.255859375
+          }
+        }
+      ],
+      "text_cache_stats": {
+        "root_calls": 100,
+        "hits": 98,
+        "misses": 2,
+        "bypass": 0,
+        "evictions": 0,
+        "peak_entries": 2,
+        "peak_bytes": 190464,
+        "current_entries": 0,
+        "current_bytes": 0
+      },
+      "timings": {
+        "imports_seconds": 1.5558600947260857,
+        "load_seconds": 6.352010048925877,
+        "prepare_seconds": 0.8994517028331757,
+        "denoise_decode_seconds": 24.925483960658312,
+        "total_seconds": 34.14003222063184
+      },
+      "cuda_allocated_peak_bytes": 5988642304,
+      "cuda_reserved_peak_bytes": 6144655360,
+      "resource": {
+        "status": "complete",
+        "seconds": 35.95673154294491,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7347236864,
+        "errors": []
+      },
+      "pixels": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0,
+        "psnr_db": null,
+        "changed_fraction": 0.0
+      }
+    },
+    {
+      "label": "t0.06-text",
+      "status": "complete",
+      "settings": {
+        "mode": "cache",
+        "text_cache": true,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": "",
+        "cache_dit_version": "1.5.3",
+        "cache_options": {
+          "threshold": 0.06,
+          "first_blocks": 8,
+          "last_blocks": 2,
+          "warmup_steps": 8,
+          "max_continuous_cached_steps": 1,
+          "num_inference_steps": 50,
+          "max_contexts": 4
+        }
+      },
+      "cache_stats": [
+        {
+          "scope_index": 0,
+          "skip_layers": [],
+          "condition_shape": [
+            1,
+            21,
+            4096
+          ],
+          "hits": 15,
+          "calls": 50,
+          "misses": 35,
+          "cached_steps": [
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            37,
+            39,
+            41
+          ],
+          "residual_diffs": {
+            "8": 0.0751953125,
+            "9": 0.0908203125,
+            "10": 0.06396484375,
+            "11": 0.06396484375,
+            "12": 0.07373046875,
+            "13": 0.053955078125,
+            "15": 0.053955078125,
+            "17": 0.04931640625,
+            "19": 0.05029296875,
+            "21": 0.046875,
+            "23": 0.04541015625,
+            "25": 0.04248046875,
+            "27": 0.041259765625,
+            "29": 0.04248046875,
+            "31": 0.040283203125,
+            "33": 0.041015625,
+            "35": 0.041015625,
+            "37": 0.044677734375,
+            "39": 0.0478515625,
+            "41": 0.052734375,
+            "43": 0.061767578125,
+            "44": 0.06982421875,
+            "45": 0.078125,
+            "46": 0.0908203125,
+            "47": 0.11376953125,
+            "48": 0.1455078125,
+            "49": 0.25390625
+          }
+        },
+        {
+          "scope_index": 1,
+          "skip_layers": [
+            22
+          ],
+          "condition_shape": [
+            1,
+            10,
+            4096
+          ],
+          "hits": 15,
+          "calls": 50,
+          "misses": 35,
+          "cached_steps": [
+            13,
+            15,
+            17,
+            19,
+            21,
+            23,
+            25,
+            27,
+            29,
+            31,
+            33,
+            35,
+            37,
+            39,
+            41
+          ],
+          "residual_diffs": {
+            "8": 0.07958984375,
+            "9": 0.09521484375,
+            "10": 0.06640625,
+            "11": 0.06640625,
+            "12": 0.07666015625,
+            "13": 0.054931640625,
+            "15": 0.0546875,
+            "17": 0.0498046875,
+            "19": 0.05078125,
+            "21": 0.046875,
+            "23": 0.04541015625,
+            "25": 0.04248046875,
+            "27": 0.040771484375,
+            "29": 0.0419921875,
+            "31": 0.039794921875,
+            "33": 0.040771484375,
+            "35": 0.040771484375,
+            "37": 0.04443359375,
+            "39": 0.047607421875,
+            "41": 0.052734375,
+            "43": 0.062255859375,
+            "44": 0.06982421875,
+            "45": 0.07763671875,
+            "46": 0.091796875,
+            "47": 0.115234375,
+            "48": 0.146484375,
+            "49": 0.255859375
+          }
+        }
+      ],
+      "text_cache_stats": {
+        "root_calls": 100,
+        "hits": 98,
+        "misses": 2,
+        "bypass": 0,
+        "evictions": 0,
+        "peak_entries": 2,
+        "peak_bytes": 190464,
+        "current_entries": 0,
+        "current_bytes": 0
+      },
+      "timings": {
+        "imports_seconds": 1.5110733322799206,
+        "load_seconds": 6.112846665084362,
+        "prepare_seconds": 0.9124203845858574,
+        "denoise_decode_seconds": 20.875942654907703,
+        "total_seconds": 29.814399477094412
+      },
+      "cuda_allocated_peak_bytes": 5988642304,
+      "cuda_reserved_peak_bytes": 6144655360,
+      "resource": {
+        "status": "complete",
+        "seconds": 31.585754591971636,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7348989952,
+        "errors": []
+      },
+      "pixels": {
+        "exact": false,
+        "mae": 2.769576072692871,
+        "max_abs": 220.0,
+        "psnr_db": 27.871789355652936,
+        "changed_fraction": 0.6930195490519205
+      }
+    },
+    {
+      "label": "t0.10-text",
+      "status": "complete",
+      "settings": {
+        "mode": "cache",
+        "text_cache": true,
+        "cpu_threads": 4,
+        "width": 1024,
+        "height": 1024,
+        "steps": 50,
+        "seed": 42,
+        "guidance_scale": 3.0,
+        "shift": 5.0,
+        "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+        "negative_prompt": "",
+        "cache_dit_version": "1.5.3",
+        "cache_options": {
+          "threshold": 0.1,
+          "first_blocks": 8,
+          "last_blocks": 2,
+          "warmup_steps": 8,
+          "max_continuous_cached_steps": 1,
+          "num_inference_steps": 50,
+          "max_contexts": 4
+        }
+      },
+      "cache_stats": [
+        {
+          "scope_index": 0,
+          "skip_layers": [],
+          "condition_shape": [
+            1,
+            21,
+            4096
+          ],
+          "hits": 20,
+          "calls": 50,
+          "misses": 30,
+          "cached_steps": [
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46
+          ],
+          "residual_diffs": {
+            "8": 0.0751953125,
+            "10": 0.0634765625,
+            "12": 0.07421875,
+            "14": 0.060302734375,
+            "16": 0.05078125,
+            "18": 0.048095703125,
+            "20": 0.046875,
+            "22": 0.04443359375,
+            "24": 0.044677734375,
+            "26": 0.0419921875,
+            "28": 0.041015625,
+            "30": 0.039794921875,
+            "32": 0.042724609375,
+            "34": 0.041748046875,
+            "36": 0.04296875,
+            "38": 0.042724609375,
+            "40": 0.052001953125,
+            "42": 0.057373046875,
+            "44": 0.0693359375,
+            "46": 0.0908203125,
+            "48": 0.1455078125,
+            "49": 0.25390625
+          }
+        },
+        {
+          "scope_index": 1,
+          "skip_layers": [
+            22
+          ],
+          "condition_shape": [
+            1,
+            10,
+            4096
+          ],
+          "hits": 20,
+          "calls": 50,
+          "misses": 30,
+          "cached_steps": [
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38,
+            40,
+            42,
+            44,
+            46
+          ],
+          "residual_diffs": {
+            "8": 0.07958984375,
+            "10": 0.06591796875,
+            "12": 0.076171875,
+            "14": 0.0615234375,
+            "16": 0.05078125,
+            "18": 0.048095703125,
+            "20": 0.04638671875,
+            "22": 0.044677734375,
+            "24": 0.044189453125,
+            "26": 0.041748046875,
+            "28": 0.041015625,
+            "30": 0.039794921875,
+            "32": 0.042724609375,
+            "34": 0.04150390625,
+            "36": 0.042724609375,
+            "38": 0.042724609375,
+            "40": 0.0517578125,
+            "42": 0.057373046875,
+            "44": 0.0693359375,
+            "46": 0.09130859375,
+            "48": 0.146484375,
+            "49": 0.25390625
+          }
+        }
+      ],
+      "text_cache_stats": {
+        "root_calls": 100,
+        "hits": 98,
+        "misses": 2,
+        "bypass": 0,
+        "evictions": 0,
+        "peak_entries": 2,
+        "peak_bytes": 190464,
+        "current_entries": 0,
+        "current_bytes": 0
+      },
+      "timings": {
+        "imports_seconds": 1.508232295513153,
+        "load_seconds": 6.0544994324445724,
+        "prepare_seconds": 0.9656392894685268,
+        "denoise_decode_seconds": 19.70391445234418,
+        "total_seconds": 28.63711018487811
+      },
+      "cuda_allocated_peak_bytes": 5988642304,
+      "cuda_reserved_peak_bytes": 6144655360,
+      "resource": {
+        "status": "complete",
+        "seconds": 30.398802544921637,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7348748288,
+        "errors": []
+      },
+      "pixels": {
+        "exact": false,
+        "mae": 4.942742665608724,
+        "max_abs": 245.0,
+        "psnr_db": 26.33919699319836,
+        "changed_fraction": 0.8432887395222982
+      }
+    }
+  ],
+  "exact_probes": {
+    "embedding": [
+      {
+        "mode": "reference",
+        "status": "complete",
+        "cpu_threads": 4,
+        "encoder_dequant": "torch",
+        "embedding_calls": [
+          {
+            "stage": "positive",
+            "inside_original_forward": true,
+            "weight_device": "cuda:0",
+            "input_device": "cuda:0",
+            "input_shape": [
+              1,
+              21
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cuda:0",
+            "output_shape": [
+              1,
+              21,
+              4096
+            ],
+            "output_bytes": 172032,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "meta"
+          },
+          {
+            "stage": "negative",
+            "inside_original_forward": true,
+            "weight_device": "cuda:0",
+            "input_device": "cuda:0",
+            "input_shape": [
+              1,
+              10
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cuda:0",
+            "output_shape": [
+              1,
+              10,
+              4096
+            ],
+            "output_bytes": 81920,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "meta"
+          },
+          {
+            "stage": "synthetic256",
+            "inside_original_forward": true,
+            "weight_device": "cuda:0",
+            "input_device": "cuda:0",
+            "input_shape": [
+              1,
+              256
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cuda:0",
+            "output_shape": [
+              1,
+              256,
+              4096
+            ],
+            "output_bytes": 2097152,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "meta"
+          }
+        ],
+        "timings": {
+          "load_seconds": 8.570760902017355,
+          "positive_seconds": 1.667200967669487,
+          "negative_seconds": 1.12765883654356,
+          "synthetic256_seconds": 1.0602229200303555
+        },
+        "load_cuda_max_allocated_bytes": 2113486848,
+        "load_cuda_max_reserved_bytes": 2134900736,
+        "embedding_hook_before": {
+          "type": "AlignDevicesHook",
+          "offload": true,
+          "execution_device": "cuda:0",
+          "weight_device_between_forwards": "meta"
+        },
+        "embedding_hook_after": {
+          "offload": true,
+          "execution_device": "cuda:0",
+          "io_same_device": false
+        },
+        "positive_cuda_max_allocated_bytes": 4143204864,
+        "positive_cuda_max_reserved_bytes": 4162846720,
+        "negative_cuda_max_allocated_bytes": 4151634432,
+        "negative_cuda_max_reserved_bytes": 6197084160,
+        "synthetic256_cuda_max_allocated_bytes": 4153652736,
+        "synthetic256_cuda_max_reserved_bytes": 6197084160,
+        "baseline_condition_comparison": {
+          "all_exact": true,
+          "tensors": {
+            "prompt_embeds": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu",
+              "max_abs_diff": 0.0
+            },
+            "prompt_attention_mask": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            },
+            "negative_prompt_embeds": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu",
+              "max_abs_diff": 0.0
+            },
+            "negative_prompt_attention_mask": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            }
+          }
+        },
+        "embedding_execution_verified": true,
+        "all_checks_passed": true,
+        "synthetic_cross_mode_checked": false,
+        "seconds": 14.237297557294369,
+        "resource": {
+          "status": "complete",
+          "seconds": 16.09157471731305,
+          "sampled_tree_gpu_peak_bytes": 6637486080,
+          "sampled_tree_rss_peak_bytes": 8453050368,
+          "errors": []
+        }
+      },
+      {
+        "mode": "cpu-lookup",
+        "status": "complete",
+        "cpu_threads": 4,
+        "encoder_dequant": "torch",
+        "embedding_calls": [
+          {
+            "stage": "positive",
+            "inside_original_forward": true,
+            "weight_device": "cpu",
+            "input_device": "cpu",
+            "input_shape": [
+              1,
+              21
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cpu",
+            "output_shape": [
+              1,
+              21,
+              4096
+            ],
+            "output_bytes": 172032,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "cpu"
+          },
+          {
+            "stage": "negative",
+            "inside_original_forward": true,
+            "weight_device": "cpu",
+            "input_device": "cpu",
+            "input_shape": [
+              1,
+              10
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cpu",
+            "output_shape": [
+              1,
+              10,
+              4096
+            ],
+            "output_bytes": 81920,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "cpu"
+          },
+          {
+            "stage": "synthetic256",
+            "inside_original_forward": true,
+            "weight_device": "cpu",
+            "input_device": "cpu",
+            "input_shape": [
+              1,
+              256
+            ],
+            "weight_bytes": 2034237440,
+            "weight_dtype": "torch.bfloat16",
+            "output_device": "cpu",
+            "output_shape": [
+              1,
+              256,
+              4096
+            ],
+            "output_bytes": 2097152,
+            "output_device_after_accelerate": "cuda:0",
+            "weight_device_after_accelerate": "cpu"
+          }
+        ],
+        "timings": {
+          "load_seconds": 8.581219643354416,
+          "positive_seconds": 2.3677812963724136,
+          "negative_seconds": 1.858820453286171,
+          "synthetic256_seconds": 1.6685029827058315
+        },
+        "load_cuda_max_allocated_bytes": 2113486848,
+        "load_cuda_max_reserved_bytes": 2134900736,
+        "embedding_hook_before": {
+          "type": "AlignDevicesHook",
+          "offload": true,
+          "execution_device": "cuda:0",
+          "weight_device_between_forwards": "meta"
+        },
+        "lookup_install": {
+          "strategy": "cpu_embedding_lookup",
+          "weight_bytes": 2034237440,
+          "shape": [
+            248320,
+            4096
+          ],
+          "output_device": "same as incoming input_ids",
+          "state_key_changed": false
+        },
+        "embedding_hook_after": {
+          "offload": false,
+          "execution_device": "cpu",
+          "io_same_device": true
+        },
+        "positive_cuda_max_allocated_bytes": 2461926400,
+        "positive_cuda_max_reserved_bytes": 2602565632,
+        "negative_cuda_max_allocated_bytes": 2461022208,
+        "negative_cuda_max_reserved_bytes": 2602565632,
+        "synthetic256_cuda_max_allocated_bytes": 2482290176,
+        "synthetic256_cuda_max_reserved_bytes": 2615148544,
+        "baseline_condition_comparison": {
+          "all_exact": true,
+          "tensors": {
+            "prompt_embeds": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu",
+              "max_abs_diff": 0.0
+            },
+            "prompt_attention_mask": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            },
+            "negative_prompt_embeds": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu",
+              "max_abs_diff": 0.0
+            },
+            "negative_prompt_attention_mask": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            }
+          }
+        },
+        "synthetic_comparison": {
+          "all_exact": true,
+          "tensors": {
+            "input_ids": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            },
+            "attention_mask": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu"
+            },
+            "last_hidden_state": {
+              "exact": true,
+              "dtype_equal": true,
+              "shape_equal": true,
+              "actual_device": "cpu",
+              "reference_device": "cpu",
+              "max_abs_diff": 0.0
+            }
+          }
+        },
+        "embedding_execution_verified": true,
+        "all_checks_passed": true,
+        "synthetic_cross_mode_checked": true,
+        "seconds": 16.15771221369505,
+        "resource": {
+          "status": "complete",
+          "seconds": 17.996554039418697,
+          "sampled_tree_gpu_peak_bytes": 3051356160,
+          "sampled_tree_rss_peak_bytes": 8347267072,
+          "errors": []
+        }
+      }
+    ],
+    "generator": [
+      {
+        "mode": "reference",
+        "status": "complete",
+        "settings": {
+          "mode": "reference",
+          "text_cache": false,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "timings": {
+          "imports_seconds": 1.512490976601839,
+          "load_seconds": 6.121140494942665,
+          "prepare_seconds": 0.8731024451553822,
+          "denoise_decode_seconds": 24.94042255356908,
+          "total_seconds": 33.8465939052403
+        },
+        "cuda_allocated_peak_bytes": 5836946944,
+        "cuda_reserved_peak_bytes": 5966397440,
+        "pixels_exact_to_uncached": true,
+        "resource": {
+          "status": "complete",
+          "seconds": 35.649051669985056,
+          "sampled_tree_gpu_peak_bytes": 6406799360,
+          "sampled_tree_rss_peak_bytes": 7348568064,
+          "errors": []
+        }
+      },
+      {
+        "mode": "text",
+        "status": "complete",
+        "settings": {
+          "mode": "reference",
+          "text_cache": true,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": "",
+          "text_cache_version": 2
+        },
+        "text_cache_stats": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "timings": {
+          "imports_seconds": 1.536847598850727,
+          "load_seconds": 6.089151628315449,
+          "prepare_seconds": 0.8818058669567108,
+          "denoise_decode_seconds": 24.816416662186384,
+          "total_seconds": 33.724723286926746
+        },
+        "cuda_allocated_peak_bytes": 5843565568,
+        "cuda_reserved_peak_bytes": 5966397440,
+        "pixels_exact_to_uncached": true,
+        "resource": {
+          "status": "complete",
+          "seconds": 35.5019121915102,
+          "sampled_tree_gpu_peak_bytes": 6406799360,
+          "sampled_tree_rss_peak_bytes": 7363645440,
+          "errors": []
+        }
+      },
+      {
+        "mode": "cache-text",
+        "status": "complete",
+        "settings": {
+          "mode": "cache",
+          "text_cache": true,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": "",
+          "text_cache_version": 2,
+          "cache_dit_version": "1.5.3",
+          "cache_options": {
+            "threshold": 0.06,
+            "first_blocks": 8,
+            "last_blocks": 2,
+            "warmup_steps": 8,
+            "max_continuous_cached_steps": 1,
+            "num_inference_steps": 50,
+            "max_contexts": 4
+          }
+        },
+        "cache_stats": [
+          {
+            "scope_index": 0,
+            "skip_layers": [],
+            "condition_shape": [
+              1,
+              21,
+              4096
+            ],
+            "hits": 15,
+            "calls": 50,
+            "misses": 35,
+            "cached_steps": [
+              13,
+              15,
+              17,
+              19,
+              21,
+              23,
+              25,
+              27,
+              29,
+              31,
+              33,
+              35,
+              37,
+              39,
+              41
+            ],
+            "residual_diffs": {
+              "8": 0.0751953125,
+              "9": 0.0908203125,
+              "10": 0.06396484375,
+              "11": 0.06396484375,
+              "12": 0.07373046875,
+              "13": 0.053955078125,
+              "15": 0.053955078125,
+              "17": 0.04931640625,
+              "19": 0.05029296875,
+              "21": 0.046875,
+              "23": 0.04541015625,
+              "25": 0.04248046875,
+              "27": 0.041259765625,
+              "29": 0.04248046875,
+              "31": 0.040283203125,
+              "33": 0.041015625,
+              "35": 0.041015625,
+              "37": 0.044677734375,
+              "39": 0.0478515625,
+              "41": 0.052734375,
+              "43": 0.061767578125,
+              "44": 0.06982421875,
+              "45": 0.078125,
+              "46": 0.0908203125,
+              "47": 0.11376953125,
+              "48": 0.1455078125,
+              "49": 0.25390625
+            }
+          },
+          {
+            "scope_index": 1,
+            "skip_layers": [
+              22
+            ],
+            "condition_shape": [
+              1,
+              10,
+              4096
+            ],
+            "hits": 15,
+            "calls": 50,
+            "misses": 35,
+            "cached_steps": [
+              13,
+              15,
+              17,
+              19,
+              21,
+              23,
+              25,
+              27,
+              29,
+              31,
+              33,
+              35,
+              37,
+              39,
+              41
+            ],
+            "residual_diffs": {
+              "8": 0.07958984375,
+              "9": 0.09521484375,
+              "10": 0.06640625,
+              "11": 0.06640625,
+              "12": 0.07666015625,
+              "13": 0.054931640625,
+              "15": 0.0546875,
+              "17": 0.0498046875,
+              "19": 0.05078125,
+              "21": 0.046875,
+              "23": 0.04541015625,
+              "25": 0.04248046875,
+              "27": 0.040771484375,
+              "29": 0.0419921875,
+              "31": 0.039794921875,
+              "33": 0.040771484375,
+              "35": 0.040771484375,
+              "37": 0.04443359375,
+              "39": 0.047607421875,
+              "41": 0.052734375,
+              "43": 0.062255859375,
+              "44": 0.06982421875,
+              "45": 0.07763671875,
+              "46": 0.091796875,
+              "47": 0.115234375,
+              "48": 0.146484375,
+              "49": 0.255859375
+            }
+          }
+        ],
+        "text_cache_stats": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "timings": {
+          "imports_seconds": 1.5593154095113277,
+          "load_seconds": 6.209889501333237,
+          "prepare_seconds": 0.9292219914495945,
+          "denoise_decode_seconds": 20.4981788136065,
+          "total_seconds": 29.598761178553104
+        },
+        "cuda_allocated_peak_bytes": 5995070464,
+        "cuda_reserved_peak_bytes": 6144655360,
+        "pixels_exact_to_uncached": false,
+        "resource": {
+          "status": "complete",
+          "seconds": 31.46415777131915,
+          "sampled_tree_gpu_peak_bytes": 6585057280,
+          "sampled_tree_rss_peak_bytes": 7348011008,
+          "errors": []
+        },
+        "pixels_exact_to_same_cache_threshold": true
+      }
+    ]
+  },
+  "placement": [
+    {
+      "status": "complete",
+      "mode": "cpu-lookup",
+      "cpu_threads": 4,
+      "offload_layers": 4,
+      "encoder_dequant": "torch",
+      "embedding_calls": [
+        {
+          "stage": "positive",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            21
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            21,
+            4096
+          ],
+          "output_bytes": 172032,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        },
+        {
+          "stage": "negative",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            10
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            10,
+            4096
+          ],
+          "output_bytes": 81920,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        },
+        {
+          "stage": "synthetic256",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            256
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            256,
+            4096
+          ],
+          "output_bytes": 2097152,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        }
+      ],
+      "timings": {
+        "load_seconds": 8.321700282394886,
+        "positive_seconds": 1.1917120479047298,
+        "negative_seconds": 0.5253175497055054,
+        "synthetic256_seconds": 0.6263138949871063
+      },
+      "load_cuda_max_allocated_bytes": 4924129280,
+      "load_cuda_max_reserved_bytes": 4945084416,
+      "embedding_hook_before": {
+        "type": "AlignDevicesHook",
+        "offload": true,
+        "execution_device": "cuda:0",
+        "weight_device_between_forwards": "meta"
+      },
+      "lookup_install": {
+        "strategy": "cpu_embedding_lookup",
+        "weight_bytes": 2034237440,
+        "shape": [
+          248320,
+          4096
+        ],
+        "output_device": "same as incoming input_ids",
+        "state_key_changed": false
+      },
+      "embedding_hook_after": {
+        "offload": false,
+        "execution_device": "cpu",
+        "io_same_device": true
+      },
+      "positive_cuda_max_allocated_bytes": 5273639936,
+      "positive_cuda_max_reserved_bytes": 5414846464,
+      "negative_cuda_max_allocated_bytes": 5272735744,
+      "negative_cuda_max_reserved_bytes": 5414846464,
+      "synthetic256_cuda_max_allocated_bytes": 5294003712,
+      "synthetic256_cuda_max_reserved_bytes": 5423235072,
+      "baseline_condition_comparison": {
+        "all_exact": true,
+        "tensors": {
+          "prompt_embeds": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          },
+          "prompt_attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "negative_prompt_embeds": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          },
+          "negative_prompt_attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          }
+        }
+      },
+      "synthetic_comparison": {
+        "all_exact": true,
+        "tensors": {
+          "input_ids": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "last_hidden_state": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          }
+        }
+      },
+      "embedding_execution_verified": true,
+      "all_checks_passed": true,
+      "synthetic_cross_mode_checked": true,
+      "seconds": 12.381722953170538,
+      "resource": {
+        "status": "complete",
+        "seconds": 13.806664291769266,
+        "sampled_tree_gpu_peak_bytes": 5857345536,
+        "sampled_tree_rss_peak_bytes": 5681098752,
+        "errors": []
+      }
+    },
+    {
+      "status": "complete",
+      "mode": "cpu-lookup",
+      "cpu_threads": 4,
+      "offload_layers": 0,
+      "encoder_dequant": "torch",
+      "embedding_calls": [
+        {
+          "stage": "positive",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            21
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            21,
+            4096
+          ],
+          "output_bytes": 172032,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        },
+        {
+          "stage": "negative",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            10
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            10,
+            4096
+          ],
+          "output_bytes": 81920,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        },
+        {
+          "stage": "synthetic256",
+          "inside_original_forward": true,
+          "weight_device": "cpu",
+          "input_device": "cpu",
+          "input_shape": [
+            1,
+            256
+          ],
+          "weight_bytes": 2034237440,
+          "weight_dtype": "torch.bfloat16",
+          "output_device": "cpu",
+          "output_shape": [
+            1,
+            256,
+            4096
+          ],
+          "output_bytes": 2097152,
+          "output_device_after_accelerate": "cuda:0",
+          "weight_device_after_accelerate": "cpu"
+        }
+      ],
+      "timings": {
+        "load_seconds": 8.260119907557964,
+        "positive_seconds": 0.7916471511125565,
+        "negative_seconds": 0.28213339298963547,
+        "synthetic256_seconds": 0.3049064055085182
+      },
+      "load_cuda_max_allocated_bytes": 5626789888,
+      "load_cuda_max_reserved_bytes": 5641338880,
+      "embedding_hook_before": {
+        "type": "AlignDevicesHook",
+        "offload": true,
+        "execution_device": "cuda:0",
+        "weight_device_between_forwards": "meta"
+      },
+      "lookup_install": {
+        "strategy": "cpu_embedding_lookup",
+        "weight_bytes": 2034237440,
+        "shape": [
+          248320,
+          4096
+        ],
+        "output_device": "same as incoming input_ids",
+        "state_key_changed": false
+      },
+      "embedding_hook_after": {
+        "offload": false,
+        "execution_device": "cpu",
+        "io_same_device": true
+      },
+      "positive_cuda_max_allocated_bytes": 5935673856,
+      "positive_cuda_max_reserved_bytes": 6157238272,
+      "negative_cuda_max_allocated_bytes": 5934769664,
+      "negative_cuda_max_reserved_bytes": 6157238272,
+      "synthetic256_cuda_max_allocated_bytes": 5954989056,
+      "synthetic256_cuda_max_reserved_bytes": 6157238272,
+      "baseline_condition_comparison": {
+        "all_exact": true,
+        "tensors": {
+          "prompt_embeds": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          },
+          "prompt_attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "negative_prompt_embeds": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          },
+          "negative_prompt_attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          }
+        }
+      },
+      "synthetic_comparison": {
+        "all_exact": true,
+        "tensors": {
+          "input_ids": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "attention_mask": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu"
+          },
+          "last_hidden_state": {
+            "exact": true,
+            "dtype_equal": true,
+            "shape_equal": true,
+            "actual_device": "cpu",
+            "reference_device": "cpu",
+            "max_abs_diff": 0.0
+          }
+        }
+      },
+      "embedding_execution_verified": true,
+      "all_checks_passed": true,
+      "synthetic_cross_mode_checked": true,
+      "seconds": 11.301331494003534,
+      "resource": {
+        "status": "complete",
+        "seconds": 12.655218780040741,
+        "sampled_tree_gpu_peak_bytes": 6597640192,
+        "sampled_tree_rss_peak_bytes": 4910948352,
+        "errors": []
+      }
+    }
+  ],
+  "inductor": {
+    "first": {
+      "status": "complete",
+      "backend": "torchinductor",
+      "mode": "default",
+      "cudagraphs": false,
+      "fullgraph": false,
+      "scope": "One real first-step positive-conditioning joint block, not end-to-end generation",
+      "torch": "2.9.1+cu128",
+      "input_shapes": [
+        [
+          1,
+          4117,
+          3072
+        ],
+        [
+          1,
+          4117,
+          128
+        ],
+        [
+          1,
+          6,
+          3072
+        ]
+      ],
+      "capture_seconds": 5.146462135016918,
+      "capture_peak_allocated_bytes": 5522959360,
+      "eager_first_seconds": 0.5761502534151077,
+      "eager_seconds": [
+        0.004376955330371857,
+        0.004357792437076569,
+        0.004352021962404251,
+        0.0043457746505737305,
+        0.004369594156742096,
+        0.004331041127443314,
+        0.004376057535409927,
+        0.004345066845417023,
+        0.004345308989286423,
+        0.004370756447315216,
+        0.004350185394287109,
+        0.004375915974378586,
+        0.004333749413490295,
+        0.004345551133155823,
+        0.0043527111411094666,
+        0.004361521452665329,
+        0.004348304122686386,
+        0.004350654780864716,
+        0.004362650215625763,
+        0.0043885596096515656
+      ],
+      "eager_median_seconds": 0.004352366551756859,
+      "compiled_first_seconds": 22.938595183193684,
+      "agreement": {
+        "equal": false,
+        "max_abs": 128.0,
+        "mean_abs": 0.006355537101626396,
+        "reference_rms": 12.43829345703125,
+        "finite": true
+      },
+      "compiled_seconds": [
+        0.0045942626893520355,
+        0.004317976534366608,
+        0.004306543618440628,
+        0.004277914762496948,
+        0.004280127584934235,
+        0.004290666431188583,
+        0.004292502999305725,
+        0.004289001226425171,
+        0.0042974501848220825,
+        0.004283227026462555,
+        0.004320919513702393,
+        0.0043235234916210175,
+        0.0043021030724048615,
+        0.004298608750104904,
+        0.004299357533454895,
+        0.004327114671468735,
+        0.004299826920032501,
+        0.004314932972192764,
+        0.004294052720069885,
+        0.004314318299293518
+      ],
+      "compiled_median_seconds": 0.004299592226743698,
+      "dynamo_counters": {
+        "frames": {
+          "total": 1,
+          "ok": 1
+        },
+        "inline_call": {},
+        "unimplemented": {},
+        "stats": {
+          "calls_captured": 99,
+          "unique_graphs": 1
+        },
+        "inductor": {
+          "pattern_matcher_count": 30,
+          "pattern_matcher_nodes": 34,
+          "removed_pointless_view_pair": 4,
+          "fxgraph_cache_miss": 1,
+          "extern_calls": 14,
+          "async_compile_cache_miss": 9,
+          "triton_bundler_save_kernel": 256,
+          "triton_bundler_save_static_autotuner": 1,
+          "benchmarking.InductorBenchmarker.benchmark_gpu": 28
+        },
+        "aot_autograd": {
+          "total": 1,
+          "autograd_cache_miss": 1,
+          "autograd_cache_saved": 1,
+          "ok": 1
+        },
+        "graph_break": {}
+      },
+      "compiled_peak_allocated_bytes": 484514304,
+      "compiled_peak_reserved_bytes": 710934528
+    },
+    "repeat_default": {
+      "status": "complete",
+      "backend": "torchinductor",
+      "mode": "default",
+      "cudagraphs": false,
+      "fullgraph": false,
+      "scope": "One real first-step positive-conditioning joint block, not end-to-end generation",
+      "torch": "2.9.1+cu128",
+      "input_shapes": [
+        [
+          1,
+          4117,
+          3072
+        ],
+        [
+          1,
+          4117,
+          128
+        ],
+        [
+          1,
+          6,
+          3072
+        ]
+      ],
+      "capture_seconds": 5.020133048295975,
+      "capture_peak_allocated_bytes": 5522959360,
+      "eager_first_seconds": 0.5787581950426102,
+      "eager_seconds": [
+        0.004390832036733627,
+        0.004346627742052078,
+        0.00435025617480278,
+        0.004369586706161499,
+        0.0043314918875694275,
+        0.004346083849668503,
+        0.004357188940048218,
+        0.004344776272773743,
+        0.004355311393737793,
+        0.004357166588306427,
+        0.004354763776063919,
+        0.004382122308015823,
+        0.004356935620307922,
+        0.004317350685596466,
+        0.004353512078523636,
+        0.004333809018135071,
+        0.004347335547208786,
+        0.00435175746679306,
+        0.004291381686925888,
+        0.004354313015937805
+      ],
+      "eager_median_seconds": 0.004352634772658348,
+      "options": {
+        "triton.cudagraphs": false
+      },
+      "compiled_first_seconds": 0.9446443580091,
+      "agreement": {
+        "equal": false,
+        "max_abs": 128.0,
+        "mean_abs": 0.006355537101626396,
+        "reference_rms": 12.43829345703125,
+        "finite": true,
+        "relative_l2": 0.0036605026107281446,
+        "changed_fraction": 0.8222869634628296,
+        "reference_abs_max": 16384.0,
+        "output_abs_max": 16512.0,
+        "reference_unchanged": true,
+        "inputs_unchanged": true,
+        "top_differences": [
+          {
+            "index": 12587340,
+            "reference": -16384.0,
+            "compiled": -16512.0,
+            "abs_error": 128.0
+          },
+          {
+            "index": 12627276,
+            "reference": -11584.0,
+            "compiled": -11648.0,
+            "abs_error": 64.0
+          },
+          {
+            "index": 148812,
+            "reference": 448.0,
+            "compiled": 452.0,
+            "abs_error": 4.0
+          },
+          {
+            "index": 354636,
+            "reference": 456.0,
+            "compiled": 452.0,
+            "abs_error": 4.0
+          },
+          {
+            "index": 867660,
+            "reference": 454.0,
+            "compiled": 450.0,
+            "abs_error": 4.0
+          },
+          {
+            "index": 2102604,
+            "reference": 454.0,
+            "compiled": 450.0,
+            "abs_error": 4.0
+          },
+          {
+            "index": 3316044,
+            "reference": 428.0,
+            "compiled": 424.0,
+            "abs_error": 4.0
+          },
+          {
+            "index": 2176332,
+            "reference": 448.0,
+            "compiled": 444.0,
+            "abs_error": 4.0
+          }
+        ],
+        "repeated_eager_equal": true,
+        "repeated_compiled_equal": true
+      },
+      "compiled_seconds": [
+        0.004735715687274933,
+        0.004393365234136581,
+        0.0043853409588336945,
+        0.004376955330371857,
+        0.0043939873576164246,
+        0.004378333687782288,
+        0.004379287362098694,
+        0.004382286220788956,
+        0.004380971193313599,
+        0.004375852644443512,
+        0.00438854843378067,
+        0.004379838705062866,
+        0.004383567720651627,
+        0.004378627985715866,
+        0.004375770688056946,
+        0.004390593618154526,
+        0.004387076944112778,
+        0.004373319447040558,
+        0.004373971372842789,
+        0.004381056874990463
+      ],
+      "compiled_median_seconds": 0.004381014034152031,
+      "dynamo_counters": {
+        "frames": {
+          "total": 1,
+          "ok": 1
+        },
+        "inline_call": {},
+        "unimplemented": {},
+        "stats": {
+          "calls_captured": 99,
+          "unique_graphs": 1
+        },
+        "inductor": {
+          "triton_bundler_load_static_autotuner": 1,
+          "async_compile_cache_miss": 18,
+          "async_compile_cache_hit": 1,
+          "pattern_matcher_count": 12,
+          "pattern_matcher_nodes": 12,
+          "extern_calls": 14,
+          "fxgraph_cache_hit": 1
+        },
+        "aot_autograd": {
+          "total": 1,
+          "autograd_cache_hit": 1,
+          "ok": 1
+        }
+      },
+      "compiled_peak_allocated_bytes": 560399872,
+      "compiled_peak_reserved_bytes": 677380096
+    },
+    "repeat_note": "The second probe again used default options, with a warm compiler cache; epilogue fusion was not disabled."
+  },
+  "cli_runs": [
+    {
+      "label": "reference",
+      "resource": {
+        "status": "complete",
+        "seconds": 51.219402849674225,
+        "sampled_tree_gpu_peak_bytes": 6637486080,
+        "sampled_tree_rss_peak_bytes": 8503492608,
+        "errors": []
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 11.218897920101881,
+        "timings": {
+          "load_seconds": 8.583398956805468,
+          "encode_and_save_seconds": 2.6354997232556343
+        }
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.904713213443756,
+        "timings": {
+          "load_seconds": 6.3492808267474174,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8244717158377171,
+          "denoise_decode_save_seconds": 25.730965059250593
+        },
+        "request_cache": null,
+        "cache_dit": null
+      },
+      "pixels_exact_to_reference": true
+    },
+    {
+      "label": "exact",
+      "resource": {
+        "status": "complete",
+        "seconds": 48.32119915261865,
+        "sampled_tree_gpu_peak_bytes": 6597640192,
+        "sampled_tree_rss_peak_bytes": 7360610304,
+        "errors": []
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 9.38013320416212,
+        "timings": {
+          "load_seconds": 8.22060489282012,
+          "encode_and_save_seconds": 1.1595315150916576
+        }
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.11448444053531,
+        "timings": {
+          "load_seconds": 5.81665300950408,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.867561861872673,
+          "denoise_decode_save_seconds": 25.43027299270034
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "cache_dit": null
+      },
+      "pixels_exact_to_reference": true
+    },
+    {
+      "label": "approximate",
+      "resource": {
+        "status": "complete",
+        "seconds": 33.95094293728471,
+        "sampled_tree_gpu_peak_bytes": 6585057280,
+        "sampled_tree_rss_peak_bytes": 7378296832,
+        "errors": []
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 0.04716164246201515
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 28.217861659824848,
+        "timings": {
+          "load_seconds": 5.824293691664934,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8881123289465904,
+          "denoise_decode_save_seconds": 21.505458753556013
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "cache_dit": {
+          "scopes": [
+            {
+              "scope_index": 0,
+              "skip_layers": [],
+              "condition_shape": [
+                1,
+                21,
+                4096
+              ],
+              "hits": 15,
+              "calls": 50,
+              "misses": 35,
+              "cached_steps": [
+                13,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                27,
+                29,
+                31,
+                33,
+                35,
+                37,
+                39,
+                41
+              ],
+              "residual_diffs": {
+                "8": 0.0751953125,
+                "9": 0.0908203125,
+                "10": 0.06396484375,
+                "11": 0.06396484375,
+                "12": 0.07373046875,
+                "13": 0.053955078125,
+                "15": 0.053955078125,
+                "17": 0.04931640625,
+                "19": 0.05029296875,
+                "21": 0.046875,
+                "23": 0.04541015625,
+                "25": 0.04248046875,
+                "27": 0.041259765625,
+                "29": 0.04248046875,
+                "31": 0.040283203125,
+                "33": 0.041015625,
+                "35": 0.041015625,
+                "37": 0.044677734375,
+                "39": 0.0478515625,
+                "41": 0.052734375,
+                "43": 0.061767578125,
+                "44": 0.06982421875,
+                "45": 0.078125,
+                "46": 0.0908203125,
+                "47": 0.11376953125,
+                "48": 0.1455078125,
+                "49": 0.25390625
+              }
+            },
+            {
+              "scope_index": 1,
+              "skip_layers": [
+                22
+              ],
+              "condition_shape": [
+                1,
+                10,
+                4096
+              ],
+              "hits": 15,
+              "calls": 50,
+              "misses": 35,
+              "cached_steps": [
+                13,
+                15,
+                17,
+                19,
+                21,
+                23,
+                25,
+                27,
+                29,
+                31,
+                33,
+                35,
+                37,
+                39,
+                41
+              ],
+              "residual_diffs": {
+                "8": 0.07958984375,
+                "9": 0.09521484375,
+                "10": 0.06640625,
+                "11": 0.06640625,
+                "12": 0.07666015625,
+                "13": 0.054931640625,
+                "15": 0.0546875,
+                "17": 0.0498046875,
+                "19": 0.05078125,
+                "21": 0.046875,
+                "23": 0.04541015625,
+                "25": 0.04248046875,
+                "27": 0.040771484375,
+                "29": 0.0419921875,
+                "31": 0.039794921875,
+                "33": 0.040771484375,
+                "35": 0.040771484375,
+                "37": 0.04443359375,
+                "39": 0.047607421875,
+                "41": 0.052734375,
+                "43": 0.062255859375,
+                "44": 0.06982421875,
+                "45": 0.07763671875,
+                "46": 0.091796875,
+                "47": 0.115234375,
+                "48": 0.146484375,
+                "49": 0.255859375
+              }
+            }
+          ],
+          "bypassed_calls": 0,
+          "threshold": 0.06,
+          "approximate": true
+        }
+      },
+      "pixels_exact_to_reference": false
+    },
+    {
+      "label": "long-reference",
+      "resource": {
+        "status": "complete",
+        "seconds": 39.40398155152798,
+        "sampled_tree_gpu_peak_bytes": 6496976896,
+        "sampled_tree_rss_peak_bytes": 7346683904,
+        "errors": []
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 0.05174213647842407
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 33.74061992764473,
+        "timings": {
+          "load_seconds": 5.966639835387468,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8509337119758129,
+          "denoise_decode_save_seconds": 26.923054102808237
+        },
+        "request_cache": null,
+        "cache_dit": null
+      },
+      "pixels_exact_to_reference": true
+    },
+    {
+      "label": "long-exact",
+      "resource": {
+        "status": "complete",
+        "seconds": 38.87541165575385,
+        "sampled_tree_gpu_peak_bytes": 6496976896,
+        "sampled_tree_rss_peak_bytes": 7344566272,
+        "errors": []
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 0.050770875066518784
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 33.257682129740715,
+        "timings": {
+          "load_seconds": 5.820834964513779,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8988382741808891,
+          "denoise_decode_save_seconds": 26.538011476397514
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 16805130,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "cache_dit": null
+      },
+      "pixels_exact_to_reference": true
+    }
+  ]
+}

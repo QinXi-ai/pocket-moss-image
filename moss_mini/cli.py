@@ -1,7 +1,9 @@
 """Encode and generate in separate processes to release all encoder memory."""
 import argparse
+from contextlib import ExitStack
 import importlib.metadata
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -34,6 +36,10 @@ def parser():
         q.add_argument("--cpu-threads", type=int, default=4)
         q.add_argument("--output", type=Path, required=True, help="New directory; existing directories are never overwritten")
         if name == "generate":
+            q.add_argument('--request-cache', action='store_true', help='Reuse exact text/context/RoPE preprocessing within one image request')
+            q.add_argument('--cache-dit', action='store_true', help='Experimental approximate Cache-DiT block reuse; changes image details')
+            q.add_argument('--cache-threshold', type=float, default=0.06, help='Cache-DiT relative residual threshold (default 0.06)')
+            q.add_argument('--embedding-lookup', choices=('offload', 'cpu'), default='offload', help='Original GPU lookup with weight offload, or CPU lookup with only token rows transferred')
             q.add_argument("--packed-generator", type=Path, help="Prepacked fused DiT directory from pack-generator")
             q.add_argument("--reuse-conditions", type=Path, help="Reuse completed conditions from an earlier output directory")
             q.add_argument("--encoder-dequant", choices=("torch", "triton"), default="torch",
@@ -73,6 +79,9 @@ def worker(phase, plan_path):
         torch.cuda.synchronize()
         loaded = time.perf_counter()
         if phase == "encode":
+            if plan.get('embedding_lookup') == 'cpu':
+                from .embedding_lookup import install_cpu_embedding_lookup
+                conversion['embedding_lookup'] = install_cpu_embedding_lookup(pipe.text_encoder)
             set_dequant_backend(pipe, plan.get("encoder_dequant", "torch"))
             conversion["dequant_backend"] = plan.get("encoder_dequant", "torch")
             tensors = {}
@@ -106,23 +115,36 @@ def worker(phase, plan_path):
         write_json(out/'pack-generator.json', {'status': 'complete', 'seconds': time.perf_counter()-started,
                    'conversion': conversion, 'artifact': artifact})
         return
-    pipe.enable_model_cpu_offload(device="cuda:0")
-    pipe.scheduler = type(pipe.scheduler).from_config(pipe.scheduler.config, shift=plan["shift"])
-    tensors = load_file(str(out / "conditions.safetensors"))
-    shape = (1, pipe.transformer.config.latent_channels, plan["height"]//16, plan["width"]//16)
-    noise = torch.randn(shape, generator=torch.Generator("cpu").manual_seed(plan["seed"]), dtype=torch.float32)
-    save_file({"initial_noise": noise}, str(out / "initial_noise.safetensors"))
-    torch.cuda.synchronize()
-    prepared = time.perf_counter()
-    with torch.no_grad():
-        image = pipe(**tensors, latents=noise, width=plan["width"], height=plan["height"],
-                     num_inference_steps=plan["steps"], guidance_scale=plan["guidance_scale"],
-                     uncond_skip_layers=[22], num_images_per_prompt=1, output_type="pil").images[0]
+    exact_cache = dit_cache = None
+    with ExitStack() as scope:
+        if plan.get('request_cache'):
+            from .request_cache import exact_request_cache
+            exact_cache = scope.enter_context(exact_request_cache(pipe.transformer))
+        if plan.get('cache_dit'):
+            from .cache_dit_adapter import CacheOptions, moss_cache
+            options = CacheOptions(threshold=plan['cache_threshold'], num_inference_steps=plan['steps'],
+                                   warmup_steps=min(8, plan['steps']))
+            dit_cache = scope.enter_context(moss_cache(pipe.transformer, options))
+        pipe.enable_model_cpu_offload(device="cuda:0")
+        pipe.scheduler = type(pipe.scheduler).from_config(pipe.scheduler.config, shift=plan["shift"])
+        tensors = load_file(str(out / "conditions.safetensors"))
+        shape = (1, pipe.transformer.config.latent_channels, plan["height"]//16, plan["width"]//16)
+        noise = torch.randn(shape, generator=torch.Generator("cpu").manual_seed(plan["seed"]), dtype=torch.float32)
+        save_file({"initial_noise": noise}, str(out / "initial_noise.safetensors"))
+        torch.cuda.synchronize()
+        prepared = time.perf_counter()
+        with torch.no_grad():
+            image = pipe(**tensors, latents=noise, width=plan["width"], height=plan["height"],
+                         num_inference_steps=plan["steps"], guidance_scale=plan["guidance_scale"],
+                         uncond_skip_layers=[22], num_images_per_prompt=1, output_type="pil").images[0]
     image.save(out / "image.png")
     write_json(out / "generate.json", {"status": "complete", "seconds": time.perf_counter()-started,
                "timings": {"load_seconds": staged-started, "convert_seconds": converted-staged,
                            "prepare_seconds": prepared-converted, "denoise_decode_save_seconds": time.perf_counter()-prepared},
-               "conversion": conversion})
+               "conversion": conversion,
+               "request_cache": exact_cache.as_dict() if exact_cache else None,
+               "cache_dit": {'scopes': dit_cache.records, 'bypassed_calls': dit_cache.bypassed_calls,
+                             'threshold': plan['cache_threshold'], 'approximate': True} if dit_cache else None})
 
 
 def child_environment(threads):
@@ -165,6 +187,13 @@ def main(argv=None):
     if not 0 <= offload <= 32:
         raise ValueError("--offload-layers must be between 0 and 32")
     if args.command == "generate":
+        if not math.isfinite(args.cache_threshold) or not 0 <= args.cache_threshold <= 1:
+            raise ValueError('--cache-threshold must be finite and between 0 and 1')
+        if args.cache_dit:
+            try:
+                importlib.metadata.version('cache-dit')
+            except importlib.metadata.PackageNotFoundError as exc:
+                raise RuntimeError('Install the optional cache dependency: pip install -e ".[cache]"') from exc
         if args.reuse_conditions and args.packed:
             raise ValueError('--packed and --reuse-conditions are alternatives; omit --packed to reuse conditions')
         if any(n < 16 or n % 16 for n in (args.width, args.height)):
