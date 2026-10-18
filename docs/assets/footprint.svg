@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="330" viewBox="0 0 960 330" role="img" aria-label="Text-encoder state size: BF16 15.87 GB, INT8 8.96 GB, INT6 7.66 GB, INT4 5.93 GB">
   <rect width="960" height="330" rx="18" fill="#0b1f18"/>
   <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif">
-    <text x="40" y="52" font-size="22" font-weight="700" fill="#ecfccb">Text-encoder state · 文本编码器权重体积</text>
+    <text x="40" y="52" font-size="22" font-weight="700" fill="#ecfccb">Text-encoder weight storage</text>
     <text x="40" y="78" font-size="14" fill="#a7f3d0" opacity=".7">Decimal GB. Same 9B architecture, same tokenizer — only Linear weight storage changes.</text>
   </g>
   <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" xml:space="preserve">
