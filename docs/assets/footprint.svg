@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="330" viewBox="0 0 960 330" role="img" aria-label="Text-encoder state size: BF16 15.87 GB, INT8 8.96 GB, INT6 7.66 GB, INT4 5.93 GB">
+  <rect width="960" height="330" rx="18" fill="#0b1f18"/>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif">
+    <text x="40" y="52" font-size="22" font-weight="700" fill="#ecfccb">Text-encoder state · 文本编码器权重体积</text>
+    <text x="40" y="78" font-size="14" fill="#a7f3d0" opacity=".7">Decimal GB. Same 9B architecture, same tokenizer — only Linear weight storage changes.</text>
+  </g>
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="16" xml:space="preserve">
+    <!-- scale: 15.873 GB = 640px -->
+    <text x="40"  y="134" fill="#a7f3d0">BF16</text>
+    <rect x="150" y="114" width="640" height="28" rx="7" fill="#475569"/>
+    <text x="802" y="134" fill="#cbd5e1">15.87 GB</text>
+
+    <text x="40"  y="184" fill="#a7f3d0">INT8</text>
+    <rect x="150" y="164" width="361" height="28" rx="7" fill="#2dd4bf" fill-opacity=".55"/>
+    <text x="523" y="184" fill="#cbd5e1">8.96 GB  −44%</text>
+
+    <text x="40"  y="234" fill="#ecfccb" font-weight="700">INT6 ★</text>
+    <rect x="150" y="214" width="309" height="28" rx="7" fill="#a3e635"/>
+    <text x="471" y="234" fill="#ecfccb" font-weight="700">7.66 GB  −52%  recommended</text>
+
+    <text x="40"  y="284" fill="#a7f3d0">INT4</text>
+    <rect x="150" y="264" width="239" height="28" rx="7" fill="#2dd4bf" fill-opacity=".35"/>
+    <text x="401" y="284" fill="#cbd5e1">5.93 GB  −63%</text>
+  </g>
+</svg>

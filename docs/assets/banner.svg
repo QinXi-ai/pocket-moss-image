@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-label="PocketMOSS — the full 9B MOSS-Image encoder, packed into pocket-sized VRAM">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05140f"/>
+      <stop offset=".55" stop-color="#0a2a20"/>
+      <stop offset="1" stop-color="#103b2c"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx=".82" cy=".25" r=".55">
+      <stop offset="0" stop-color="#5eead4" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx=".1" cy=".95" r=".5">
+      <stop offset="0" stop-color="#a3e635" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#a3e635" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ecfccb"/>
+      <stop offset=".5" stop-color="#a7f3d0"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#a7f3d0" stroke-opacity=".06"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="420" rx="24" fill="url(#bg)"/>
+  <rect width="1280" height="420" rx="24" fill="url(#grid)"/>
+  <rect width="1280" height="420" rx="24" fill="url(#glow1)"/>
+  <rect width="1280" height="420" rx="24" fill="url(#glow2)"/>
+
+  <!-- packed-bit motif: 9B of weights shrinking into a dense block -->
+  <g transform="translate(905 92)">
+    <g fill="#5eead4">
+      <rect x="0"   y="0"  width="22" height="22" rx="5" opacity=".18"/>
+      <rect x="30"  y="0"  width="22" height="22" rx="5" opacity=".26"/>
+      <rect x="60"  y="0"  width="22" height="22" rx="5" opacity=".34"/>
+      <rect x="90"  y="0"  width="22" height="22" rx="5" opacity=".42"/>
+      <rect x="120" y="0"  width="22" height="22" rx="5" opacity=".5"/>
+      <rect x="150" y="0"  width="22" height="22" rx="5" opacity=".58"/>
+      <rect x="180" y="0"  width="22" height="22" rx="5" opacity=".66"/>
+      <rect x="210" y="0"  width="22" height="22" rx="5" opacity=".74"/>
+      <rect x="240" y="0"  width="22" height="22" rx="5" opacity=".82"/>
+    </g>
+    <g fill="#a3e635">
+      <rect x="30"  y="44" width="17" height="17" rx="4" opacity=".35"/>
+      <rect x="54"  y="44" width="17" height="17" rx="4" opacity=".45"/>
+      <rect x="78"  y="44" width="17" height="17" rx="4" opacity=".55"/>
+      <rect x="102" y="44" width="17" height="17" rx="4" opacity=".65"/>
+      <rect x="126" y="44" width="17" height="17" rx="4" opacity=".75"/>
+      <rect x="150" y="44" width="17" height="17" rx="4" opacity=".85"/>
+      <rect x="174" y="44" width="17" height="17" rx="4" opacity=".95"/>
+    </g>
+    <rect x="66" y="84" width="130" height="58" rx="14" fill="#ecfccb" opacity=".95"/>
+    <text x="131" y="122" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="26" font-weight="700" fill="#0a2a20">INT6</text>
+    <text x="131" y="172" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" fill="#a7f3d0" opacity=".8">15.87 GB → 7.66 GB</text>
+  </g>
+
+  <text x="80" y="118" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="18" letter-spacing="4" fill="#5eead4">MOSS-IMAGE · 9B TEXT ENCODER · COMMUNITY</text>
+  <text x="76" y="215" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="96" font-weight="800" letter-spacing="-2" fill="url(#title)">PocketMOSS</text>
+  <text x="80" y="268" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',Helvetica,Arial,sans-serif" font-size="30" font-weight="600" fill="#ecfccb">完整 9B 编码器，口袋级显存。</text>
+  <text x="80" y="306" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif" font-size="21" fill="#a7f3d0" opacity=".85">Keep the original encoder. Shrink only its weight storage.</text>
+
+  <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15">
+    <rect x="80"  y="338" width="196" height="36" rx="18" fill="#ecfccb" fill-opacity=".08" stroke="#a7f3d0" stroke-opacity=".35"/>
+    <text x="178" y="361" text-anchor="middle" fill="#ecfccb">packed INT6 encoder</text>
+    <rect x="290" y="338" width="196" height="36" rx="18" fill="#ecfccb" fill-opacity=".08" stroke="#a7f3d0" stroke-opacity=".35"/>
+    <text x="388" y="361" text-anchor="middle" fill="#ecfccb">fused INT8 DiT</text>
+    <rect x="500" y="338" width="236" height="36" rx="18" fill="#5eead4" fill-opacity=".14" stroke="#5eead4" stroke-opacity=".6"/>
+    <text x="618" y="361" text-anchor="middle" fill="#5eead4">6.64 GB task GPU peak*</text>
+  </g>
+  <text x="1200" y="392" text-anchor="end" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#a7f3d0" opacity=".55">* measured on RTX 4090D, process-level · not an official OpenMOSS release</text>
+</svg>
