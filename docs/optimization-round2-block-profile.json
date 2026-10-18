@@ -1,0 +1,537 @@
+{
+  "status": "complete",
+  "warmup": 8,
+  "repeats": 10,
+  "scope": "One real first-step positive-conditioning first joint block, resident on GPU; excludes other blocks, CFG negative branch, later steps, model loading, offload and VAE decode.",
+  "execution": "Original OrbitQuant eager _block; no compile or cache/prologue options",
+  "profiler": {
+    "record_shapes": false,
+    "profile_memory": false,
+    "with_stack": false,
+    "trace_export": false
+  },
+  "torch": "2.9.1+cu128",
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "inputs": [
+    {
+      "shape": [
+        1,
+        4117,
+        3072
+      ],
+      "dtype": "torch.bfloat16",
+      "stride": [
+        12647424,
+        3072,
+        1
+      ]
+    },
+    {
+      "shape": [
+        1,
+        4117,
+        128
+      ],
+      "dtype": "torch.bfloat16",
+      "stride": [
+        526976,
+        128,
+        1
+      ]
+    },
+    {
+      "shape": [
+        1,
+        6,
+        3072
+      ],
+      "dtype": "torch.bfloat16",
+      "stride": [
+        18432,
+        3072,
+        1
+      ]
+    }
+  ],
+  "capture_seconds": 5.286282148212194,
+  "capture_peak_allocated_bytes": 5522959360,
+  "uninstrumented_block_milliseconds": {
+    "median": 4.347839832305908,
+    "samples": [
+      4.345823764801025,
+      4.335616111755371,
+      4.349855899810791,
+      4.3560638427734375,
+      4.3376641273498535,
+      4.366335868835449,
+      4.372288227081299,
+      4.331520080566406,
+      4.325376033782959,
+      4.354047775268555
+    ]
+  },
+  "agreement": {
+    "repeat_output_equal": true,
+    "inputs_unchanged": true
+  },
+  "elapsed_seconds": 10.993018627166748,
+  "observed_kernel_count": 140,
+  "observed_unique_kernel_names": 6,
+  "observed_operator_sum_self_cpu_us": 46004.070999999996,
+  "observed_kernel_sum_cuda_us": 41127.34999999999,
+  "observed_kernel_categories": {
+    "int8_gemm": {
+      "calls": 40,
+      "cuda_us": 22702.82900000001,
+      "observed_names": [
+        "_int8_scaled_gemm_body"
+      ],
+      "per_block_cuda_us": 2270.282900000001,
+      "fraction_of_observed_kernel_time": 0.5520129305681016
+    },
+    "attention": {
+      "calls": 10,
+      "cuda_us": 14903.52800000001,
+      "observed_names": [
+        "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 32, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 32, 4, cutlass::bfloat16_t> >, false, false, false, false, false, true, false, false>(pytorch_flash::Flash_fwd_params)"
+      ],
+      "per_block_cuda_us": 1490.352800000001,
+      "fraction_of_observed_kernel_time": 0.36237511048000937
+    },
+    "norm_rope_quant": {
+      "calls": 80,
+      "cuda_us": 3090.5579999999754,
+      "observed_names": [
+        "_rows_int8_kernel",
+        "_qk_norm_rope_kernel",
+        "_prologue_kernel"
+      ],
+      "per_block_cuda_us": 309.05579999999753,
+      "fraction_of_observed_kernel_time": 0.075146052444419
+    },
+    "clone_copy": {
+      "calls": 10,
+      "cuda_us": 430.4349999999977,
+      "observed_names": [
+        "Memcpy DtoD (Device -> Device)"
+      ],
+      "per_block_cuda_us": 43.04349999999977,
+      "fraction_of_observed_kernel_time": 0.010465906507470035
+    }
+  },
+  "top_kernels_by_cuda_time": [
+    {
+      "name": "_int8_scaled_gemm_body",
+      "category": "int8_gemm",
+      "matched_name_token": "int8_scaled",
+      "calls": 40,
+      "cuda_us": 22702.82900000001,
+      "per_block_cuda_us": 2270.282900000001,
+      "fraction_of_observed_kernel_time": 0.5520129305681016
+    },
+    {
+      "name": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 32, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 32, 4, cutlass::bfloat16_t> >, false, false, false, false, false, true, false, false>(pytorch_flash::Flash_fwd_params)",
+      "category": "attention",
+      "matched_name_token": "flash",
+      "calls": 10,
+      "cuda_us": 14903.52800000001,
+      "per_block_cuda_us": 1490.352800000001,
+      "fraction_of_observed_kernel_time": 0.36237511048000937
+    },
+    {
+      "name": "_rows_int8_kernel",
+      "category": "norm_rope_quant",
+      "matched_name_token": "rows_int8",
+      "calls": 40,
+      "cuda_us": 1673.6169999999793,
+      "per_block_cuda_us": 167.36169999999794,
+      "fraction_of_observed_kernel_time": 0.04069352875884247
+    },
+    {
+      "name": "_qk_norm_rope_kernel",
+      "category": "norm_rope_quant",
+      "matched_name_token": "qk_norm_rope",
+      "calls": 20,
+      "cuda_us": 1085.7040000000006,
+      "per_block_cuda_us": 108.57040000000006,
+      "fraction_of_observed_kernel_time": 0.026398588773650644
+    },
+    {
+      "name": "Memcpy DtoD (Device -> Device)",
+      "category": "clone_copy",
+      "matched_name_token": "memcpy",
+      "calls": 10,
+      "cuda_us": 430.4349999999977,
+      "per_block_cuda_us": 43.04349999999977,
+      "fraction_of_observed_kernel_time": 0.010465906507470035
+    },
+    {
+      "name": "_prologue_kernel",
+      "category": "norm_rope_quant",
+      "matched_name_token": "prologue",
+      "calls": 20,
+      "cuda_us": 331.23699999999553,
+      "per_block_cuda_us": 33.12369999999955,
+      "fraction_of_observed_kernel_time": 0.008053934911925898
+    }
+  ],
+  "top_operators_by_self_cpu": [
+    {
+      "name": "cudaDeviceSynchronize",
+      "calls": 2,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 24914.233999999997,
+      "cpu_total_us": 24914.233999999997
+    },
+    {
+      "name": "MOSS_ORIGINAL_FIRST_JOINT_BLOCK",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 11428.054000000062,
+      "cpu_total_us": 21089.837000000003,
+      "event_kind": "user_annotation_cpu_range"
+    },
+    {
+      "name": "Activity Buffer Request",
+      "calls": 1,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 3784.923,
+      "cpu_total_us": 3784.923
+    },
+    {
+      "name": "aten::empty",
+      "calls": 210,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 1243.408999999976,
+      "cpu_total_us": 1560.5809999999765
+    },
+    {
+      "name": "cuLaunchKernelEx",
+      "calls": 120,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 1092.9569999999776,
+      "cpu_total_us": 1092.9569999999776
+    },
+    {
+      "name": "aten::view",
+      "calls": 180,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 427.7320000000208,
+      "cpu_total_us": 427.7320000000208
+    },
+    {
+      "name": "aten::reshape",
+      "calls": 170,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 349.1709999999481,
+      "cpu_total_us": 740.3029999999685
+    },
+    {
+      "name": "cudaMalloc",
+      "calls": 1,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 315.1080000000002,
+      "cpu_total_us": 315.1080000000002
+    },
+    {
+      "name": "cudaMemcpyAsync",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "memcpy",
+      "self_cpu_us": 255.8450000000039,
+      "cpu_total_us": 255.8450000000039
+    },
+    {
+      "name": "aten::as_strided",
+      "calls": 200,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 252.14800000000253,
+      "cpu_total_us": 252.14800000000253
+    },
+    {
+      "name": "aten::empty_strided",
+      "calls": 30,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 230.25599999999804,
+      "cpu_total_us": 230.25599999999804
+    },
+    {
+      "name": "aten::select",
+      "calls": 70,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 176.94999999998788,
+      "cpu_total_us": 252.1239999999866
+    },
+    {
+      "name": "aten::_scaled_dot_product_flash_attention",
+      "calls": 10,
+      "category": "attention",
+      "matched_name_token": "flash",
+      "self_cpu_us": 176.85800000000745,
+      "cpu_total_us": 899.1860000000061
+    },
+    {
+      "name": "aten::transpose",
+      "calls": 80,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 174.2909999999838,
+      "cpu_total_us": 268.9869999999937
+    },
+    {
+      "name": "aten::_flash_attention_forward",
+      "calls": 10,
+      "category": "attention",
+      "matched_name_token": "flash",
+      "self_cpu_us": 155.96700000002056,
+      "cpu_total_us": 600.7590000000037
+    },
+    {
+      "name": "aten::unbind",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 149.77900000001955,
+      "cpu_total_us": 357.87000000000387
+    },
+    {
+      "name": "aten::copy_",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "copy_",
+      "self_cpu_us": 147.308999999992,
+      "cpu_total_us": 4188.076999999996
+    },
+    {
+      "name": "aten::slice",
+      "calls": 30,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 140.1239999999989,
+      "cpu_total_us": 192.47399999999743
+    },
+    {
+      "name": "aten::scaled_dot_product_attention",
+      "calls": 10,
+      "category": "attention",
+      "matched_name_token": "scaled_dot_product",
+      "self_cpu_us": 133.63299999999617,
+      "cpu_total_us": 1032.8190000000022
+    },
+    {
+      "name": "cudaLaunchKernel",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 114.57499999999982,
+      "cpu_total_us": 114.57499999999982
+    },
+    {
+      "name": "aten::unsqueeze",
+      "calls": 20,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 82.52500000000327,
+      "cpu_total_us": 112.45299999999861
+    },
+    {
+      "name": "aten::to",
+      "calls": 100,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 76.90700000000459,
+      "cpu_total_us": 76.90700000000459
+    },
+    {
+      "name": "aten::clone",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "clone",
+      "self_cpu_us": 59.805000000003474,
+      "cpu_total_us": 4342.390999999999
+    },
+    {
+      "name": "aten::empty_like",
+      "calls": 20,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 51.450000000003456,
+      "cpu_total_us": 187.19700000000194
+    },
+    {
+      "name": "aten::unflatten",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 34.90599999999813,
+      "cpu_total_us": 71.5059999999985
+    },
+    {
+      "name": "cudaFuncSetAttribute",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 23.664999999995416,
+      "cpu_total_us": 23.664999999995416
+    },
+    {
+      "name": "cudaDeviceGetAttribute",
+      "calls": 20,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 9.425999999998567,
+      "cpu_total_us": 9.425999999998567
+    },
+    {
+      "name": "cudaStreamIsCapturing",
+      "calls": 1,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 2.0640000000003056,
+      "cpu_total_us": 2.0640000000003056
+    },
+    {
+      "name": "MOSS_ORIGINAL_FIRST_JOINT_BLOCK",
+      "calls": 10,
+      "category": "other_observed",
+      "matched_name_token": null,
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0,
+      "event_kind": "user_annotation_cpu_range"
+    },
+    {
+      "name": "Memcpy DtoD (Device -> Device)",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "memcpy",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    },
+    {
+      "name": "_prologue_kernel",
+      "calls": 20,
+      "category": "norm_rope_quant",
+      "matched_name_token": "prologue",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    },
+    {
+      "name": "_rows_int8_kernel",
+      "calls": 40,
+      "category": "norm_rope_quant",
+      "matched_name_token": "rows_int8",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    },
+    {
+      "name": "_int8_scaled_gemm_body",
+      "calls": 40,
+      "category": "int8_gemm",
+      "matched_name_token": "int8_scaled",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    },
+    {
+      "name": "_qk_norm_rope_kernel",
+      "calls": 20,
+      "category": "norm_rope_quant",
+      "matched_name_token": "qk_norm_rope",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    },
+    {
+      "name": "void pytorch_flash::flash_fwd_kernel<Flash_fwd_kernel_traits<128, 128, 32, 4, false, false, cutlass::bfloat16_t, Flash_kernel_traits<128, 128, 32, 4, cutlass::bfloat16_t> >, false, false, false, false, false, true, false, false>(pytorch_flash::Flash_fwd_params)",
+      "calls": 10,
+      "category": "attention",
+      "matched_name_token": "flash",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    }
+  ],
+  "clone_copy_operator_rows": [
+    {
+      "name": "aten::clone",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "clone",
+      "self_cpu_us": 59.805000000003474,
+      "cpu_total_us": 4342.390999999999
+    },
+    {
+      "name": "aten::copy_",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "copy_",
+      "self_cpu_us": 147.308999999992,
+      "cpu_total_us": 4188.076999999996
+    },
+    {
+      "name": "cudaMemcpyAsync",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "memcpy",
+      "self_cpu_us": 255.8450000000039,
+      "cpu_total_us": 255.8450000000039
+    },
+    {
+      "name": "Memcpy DtoD (Device -> Device)",
+      "calls": 10,
+      "category": "clone_copy",
+      "matched_name_token": "memcpy",
+      "self_cpu_us": 0.0,
+      "cpu_total_us": 0.0
+    }
+  ],
+  "notes": [
+    "Kernel category assignments use only the actual recorded name and the reported matched substring. Generic names remain other_observed.",
+    "Kernel durations sum across launches; they are not end-to-end wall time and can overlap.",
+    "Operator total time is inclusive; use self time to avoid counting nested operators multiple times.",
+    "Profiler overhead affects CPU scheduling; separate uninstrumented block timing is provided.",
+    "First-block positive-branch result is a targeted diagnostic, not a full denoiser or generation profile.",
+    "Corrected kernel totals exclude the CUDA first-block user range. Raw v1 receipt remains private and unchanged.",
+    "The public operator tables retain CPU attribution only. Operator CUDA attribution is not used as an exclusive additive time total.",
+    "Kernel percentages use the sum of six actual observed CUDA kernel/copy names, excluding annotations."
+  ],
+  "resident_peak_allocated_bytes": 537108992,
+  "resident_peak_reserved_bytes": 618659840,
+  "excluded_cuda_user_annotations": {
+    "MOSS_ORIGINAL_FIRST_JOINT_BLOCK": {
+      "calls": 10,
+      "cuda_us": 41860.255
+    }
+  },
+  "profiler_correction": {
+    "kind": "deterministic_postprocessing_no_gpu_rerun",
+    "reason": "Kineto recorded the first-block user annotation on the CUDA timeline along with its child kernels. The v1 collector treated that range as an additional kernel, counting its duration twice in aggregate evidence.",
+    "source_artifact": "block-profile-v1.json",
+    "raw_source_modified": false,
+    "complete_raw_event_table_verified": true,
+    "excluded_event_name": "MOSS_ORIGINAL_FIRST_JOINT_BLOCK",
+    "excluded_range_calls": 10,
+    "excluded_range_cuda_us": 41860.255,
+    "removed_public_fields": [
+      "visible_device",
+      "observed_operator_sum_self_cuda_us",
+      "top_operators_by_self_cuda"
+    ],
+    "operator_cuda_attribution_removed": true
+  },
+  "int8_implementation": {
+    "observed_kernel": "_int8_scaled_gemm_body",
+    "backend": "OrbitQuant Triton",
+    "observation": "40 launches over 10 profiled blocks, four projection GEMMs per block.",
+    "source_evidence": "orbitquant/kernels/triton_int8_gemm.py: @triton.jit _int8_scaled_gemm_body uses tl.dot with INT32 accumulation and fused epilogues; matmul_int8_scaled_with_triton dispatches its autotuned wrappers.",
+    "scope": "This captured fused joint block exercised Triton INT8 GEMMs. This does not describe other encoder/loading or non-fused execution paths."
+  }
+}

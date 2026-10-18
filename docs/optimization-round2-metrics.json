@@ -1,0 +1,548 @@
+{
+  "date": "2026-10-18",
+  "hardware": "RTX 4090D 24GiB",
+  "cpu_threads": 4,
+  "physical_8GB_GPU_16GB_host_tested": false,
+  "decimal_units": true,
+  "cli": [
+    {
+      "label": "baseline-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 48.19974083453417,
+        "sampled_tree_gpu_peak_bytes": 6597640192,
+        "sampled_tree_rss_peak_bytes": 7359610880,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "run": {
+        "status": "complete",
+        "seconds": 48.082617834210396
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 9.552001867443323,
+        "timings": {
+          "load_seconds": 8.38564906641841,
+          "encode_and_save_seconds": 1.1663562171161175
+        }
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 32.01466044783592,
+        "timings": {
+          "load_seconds": 5.77687244862318,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.9312445148825645,
+          "denoise_decode_save_seconds": 25.306546550244093
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "cache_dit": null
+      },
+      "conditions_exact": true,
+      "initial_noise_exact": true,
+      "pixels_vs_baseline": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    },
+    {
+      "label": "loader-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 48.32978778332472,
+        "sampled_tree_gpu_peak_bytes": 6580862976,
+        "sampled_tree_rss_peak_bytes": 7368413184,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "run": {
+        "status": "complete",
+        "seconds": 48.21197300776839
+      },
+      "encode": {
+        "status": "complete",
+        "seconds": 9.604779031127691,
+        "timings": {
+          "load_seconds": 8.45349770784378,
+          "encode_and_save_seconds": 1.1512822061777115
+        }
+      },
+      "generate": {
+        "status": "complete",
+        "seconds": 31.97588787972927,
+        "timings": {
+          "load_seconds": 5.8091942220926285,
+          "convert_seconds": 0.0,
+          "prepare_seconds": 0.8747111484408379,
+          "denoise_decode_save_seconds": 25.291986767202616
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "cache_dit": null
+      },
+      "conditions_exact": true,
+      "initial_noise_exact": true,
+      "pixels_vs_baseline": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    }
+  ],
+  "generator": [
+    {
+      "label": "allocation-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 35.64897582679987,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7345381376,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "summary": {
+        "status": "complete",
+        "settings": {
+          "request_cache": true,
+          "step_cache": false,
+          "prologue": "allocation",
+          "cache_dit": false,
+          "cache_threshold": 0.06,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "step_cache": null,
+        "prologue_stats": {
+          "inputs": 16600,
+          "bypasses": 0,
+          "dense_calls": 8300,
+          "avoided_q_allocation_bytes": 104835072000,
+          "avoided_norm_allocation_bytes": 0,
+          "mode": "allocation",
+          "closed": true
+        },
+        "cache_dit": null,
+        "timings": {
+          "imports_seconds": 1.55098083242774,
+          "load_seconds": 6.2528288550674915,
+          "prepare_seconds": 0.7828176766633987,
+          "denoise_decode_seconds": 24.877548709511757,
+          "total_seconds": 33.87261223420501
+        },
+        "cuda_allocated_peak_bytes": 5843549184,
+        "cuda_reserved_peak_bytes": 5966397440
+      },
+      "reference": "reference-a",
+      "final_latent_exact": true,
+      "pixels_vs_reference": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    },
+    {
+      "label": "dense-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 35.83035982772708,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7350202368,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "summary": {
+        "status": "complete",
+        "settings": {
+          "request_cache": true,
+          "step_cache": false,
+          "prologue": "dense",
+          "cache_dit": false,
+          "cache_threshold": 0.06,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "step_cache": null,
+        "prologue_stats": {
+          "inputs": 16600,
+          "bypasses": 0,
+          "dense_calls": 8300,
+          "avoided_q_allocation_bytes": 104835072000,
+          "avoided_norm_allocation_bytes": 136504000,
+          "mode": "dense",
+          "closed": true
+        },
+        "cache_dit": null,
+        "timings": {
+          "imports_seconds": 1.6196517571806908,
+          "load_seconds": 6.075757056474686,
+          "prepare_seconds": 0.898271169513464,
+          "denoise_decode_seconds": 24.949629966169596,
+          "total_seconds": 33.9541699513793
+        },
+        "cuda_allocated_peak_bytes": 5843549184,
+        "cuda_reserved_peak_bytes": 5966397440
+      },
+      "reference": "reference-a",
+      "final_latent_exact": true,
+      "pixels_vs_reference": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    },
+    {
+      "label": "reference-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 35.6229602843523,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7346601984,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "summary": {
+        "status": "complete",
+        "settings": {
+          "request_cache": true,
+          "step_cache": false,
+          "prologue": "off",
+          "cache_dit": false,
+          "cache_threshold": 0.06,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "step_cache": null,
+        "prologue_stats": null,
+        "cache_dit": null,
+        "timings": {
+          "imports_seconds": 1.537135649472475,
+          "load_seconds": 6.243077676743269,
+          "prepare_seconds": 0.7977165877819061,
+          "denoise_decode_seconds": 24.802243422716856,
+          "total_seconds": 33.78489647060633
+        },
+        "cuda_allocated_peak_bytes": 5843565568,
+        "cuda_reserved_peak_bytes": 5966397440
+      },
+      "reference": "reference-a",
+      "final_latent_exact": true,
+      "pixels_vs_reference": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    },
+    {
+      "label": "reference-b",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 35.94600450620055,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7351586816,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "summary": {
+        "status": "complete",
+        "settings": {
+          "request_cache": true,
+          "step_cache": false,
+          "prologue": "off",
+          "cache_dit": false,
+          "cache_threshold": 0.06,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "step_cache": null,
+        "prologue_stats": null,
+        "cache_dit": null,
+        "timings": {
+          "imports_seconds": 1.5611428655683994,
+          "load_seconds": 6.449519608169794,
+          "prepare_seconds": 0.8308137431740761,
+          "denoise_decode_seconds": 24.921602360904217,
+          "total_seconds": 34.17407811805606
+        },
+        "cuda_allocated_peak_bytes": 5843565568,
+        "cuda_reserved_peak_bytes": 5966397440
+      },
+      "reference": "reference-a",
+      "final_latent_exact": true,
+      "pixels_vs_reference": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    },
+    {
+      "label": "step-a",
+      "resource": {
+        "status": "complete",
+        "returncode": 0,
+        "seconds": 35.76624007895589,
+        "sampled_tree_gpu_peak_bytes": 6406799360,
+        "sampled_tree_rss_peak_bytes": 7351488512,
+        "sample_interval_seconds": 0.025,
+        "errors": []
+      },
+      "summary": {
+        "status": "complete",
+        "settings": {
+          "request_cache": true,
+          "step_cache": true,
+          "prologue": "off",
+          "cache_dit": false,
+          "cache_threshold": 0.06,
+          "cpu_threads": 4,
+          "width": 1024,
+          "height": 1024,
+          "steps": 50,
+          "seed": 42,
+          "guidance_scale": 3.0,
+          "shift": 5.0,
+          "prompt": "a photo of a yellow skateboard and an orange computer mouse",
+          "negative_prompt": ""
+        },
+        "request_cache": {
+          "mask_hits": 98,
+          "mask_misses": 2,
+          "mask_bypass": 0,
+          "context_hits": 98,
+          "context_misses": 2,
+          "context_bypass": 0,
+          "rope_hits": 98,
+          "rope_misses": 2,
+          "rope_bypass": 0,
+          "text_hits": 98,
+          "text_misses": 2,
+          "text_bypass": 0,
+          "orbit_hits": 97,
+          "orbit_misses": 2,
+          "orbit_bypass": 0,
+          "current_bytes": 0,
+          "peak_bytes": 13074975,
+          "evictions": 0,
+          "clear_events": 7,
+          "root_calls": 100,
+          "orbit_restores": 98,
+          "current_entries": 0
+        },
+        "step_cache": {
+          "time_embedding_hits": 50,
+          "time_embedding_misses": 50,
+          "time_embedding_bypass": 0,
+          "shared_block_modulation_hits": 50,
+          "shared_block_modulation_misses": 50,
+          "shared_block_modulation_bypass": 0,
+          "video_head_modulation_hits": 50,
+          "video_head_modulation_misses": 50,
+          "video_head_modulation_bypass": 0,
+          "video_embedder_hits": 50,
+          "video_embedder_misses": 50,
+          "video_embedder_bypass": 0,
+          "root_calls": 100,
+          "current_bytes": 0,
+          "peak_bytes": 25221120,
+          "evictions": 196,
+          "clear_events": 31,
+          "current_entries": 0
+        },
+        "prologue_stats": null,
+        "cache_dit": null,
+        "timings": {
+          "imports_seconds": 1.5346053019165993,
+          "load_seconds": 6.309216897934675,
+          "prepare_seconds": 0.8638682290911674,
+          "denoise_decode_seconds": 24.83126324787736,
+          "total_seconds": 33.953445974737406
+        },
+        "cuda_allocated_peak_bytes": 5843571712,
+        "cuda_reserved_peak_bytes": 5966397440
+      },
+      "reference": "reference-a",
+      "final_latent_exact": true,
+      "pixels_vs_reference": {
+        "exact": true,
+        "mae": 0.0,
+        "max_abs": 0.0
+      }
+    }
+  ]
+}

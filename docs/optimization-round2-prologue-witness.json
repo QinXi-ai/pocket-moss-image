@@ -1,0 +1,377 @@
+{
+  "torch": "2.9.1+cu128",
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "elapsed_seconds": 1.2314650937914848,
+  "records": [
+    {
+      "rows": 0,
+      "width": 3072,
+      "variant": "random",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        }
+      }
+    },
+    {
+      "rows": 0,
+      "width": 3072,
+      "variant": "zero_mod",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        }
+      }
+    },
+    {
+      "rows": 0,
+      "width": 3072,
+      "variant": "outlier",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true
+        }
+      }
+    },
+    {
+      "rows": 1,
+      "width": 3072,
+      "variant": "random",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 1,
+      "width": 3072,
+      "variant": "zero_mod",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 1,
+      "width": 3072,
+      "variant": "outlier",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 17,
+      "width": 3072,
+      "variant": "random",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 17,
+      "width": 3072,
+      "variant": "zero_mod",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 17,
+      "width": 3072,
+      "variant": "outlier",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 4117,
+      "width": 3072,
+      "variant": "random",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0,
+          "benchmark": {
+            "median_ms": 0.1376255989074707,
+            "samples_ms": [
+              0.1392255942026774,
+              0.1377280076344808,
+              0.13707946141560873,
+              0.1376255989074707,
+              0.13728532791137696
+            ]
+          }
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0,
+          "benchmark": {
+            "median_ms": 0.12100266615549723,
+            "samples_ms": [
+              0.1214464028676351,
+              0.12045653661092122,
+              0.12103679974873861,
+              0.12100266615549723,
+              0.11274240016937256
+            ]
+          }
+        }
+      },
+      "baseline_benchmark": {
+        "median_ms": 0.11240106423695882,
+        "samples_ms": [
+          0.11530240376790364,
+          0.11267413298288981,
+          0.11229440371195475,
+          0.11233279705047608,
+          0.11240106423695882
+        ]
+      }
+    },
+    {
+      "rows": 4117,
+      "width": 3072,
+      "variant": "zero_mod",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 4117,
+      "width": 3072,
+      "variant": "outlier",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 4352,
+      "width": 3072,
+      "variant": "random",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0,
+          "benchmark": {
+            "median_ms": 0.062190934022267656,
+            "samples_ms": [
+              0.09762132962544759,
+              0.07297706604003906,
+              0.062156800429026285,
+              0.062054399649302164,
+              0.062190934022267656
+            ]
+          }
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0,
+          "benchmark": {
+            "median_ms": 0.053657599290211994,
+            "samples_ms": [
+              0.05554133256276449,
+              0.053486935297648114,
+              0.053862400849660236,
+              0.053657599290211994,
+              0.05362240076065063
+            ]
+          }
+        }
+      },
+      "baseline_benchmark": {
+        "median_ms": 0.07106560071309408,
+        "samples_ms": [
+          0.07123626867930094,
+          0.07055359681447347,
+          0.07106560071309408,
+          0.07065066496531168,
+          0.07113173007965087
+        ]
+      }
+    },
+    {
+      "rows": 4352,
+      "width": 3072,
+      "variant": "zero_mod",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    },
+    {
+      "rows": 4352,
+      "width": 3072,
+      "variant": "outlier",
+      "modes": {
+        "allocation": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        },
+        "dense": {
+          "dense_equal": true,
+          "codes_equal": true,
+          "scales_equal": true,
+          "input_unchanged": true,
+          "dense_max_abs": 0.0
+        }
+      }
+    }
+  ],
+  "all_equal": true
+}

@@ -143,3 +143,7 @@ projection, repeated residual clones, and activation-quantization intermediates.
 These are candidates, not implemented speedups. Removing residual clones would
 need special care around Cache-DiT's retained tensors. No recommendation changes
 are based only on estimated bytes or operator timings.
+
+The [second optimization pass](optimization-round2.md) tested CFG step reuse,
+encoder shard loading and unused prologue buffers. It found no demonstrated
+whole-image speedup for these candidates, so they were not added to the runtime.
