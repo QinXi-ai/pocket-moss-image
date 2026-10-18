@@ -16,6 +16,7 @@ def main():
     a = p.parse_args()
     if a.output.exists():
         raise FileExistsError(a.output)
+    a.output.parent.mkdir(parents=True, exist_ok=True)
     torch.set_num_threads(4)
     pipe, info = load_prepacked_generator(a.model, a.packed, {'kind':'local','version':a.source_version})
     manifest = json.loads((a.packed/'manifest.json').read_text())
